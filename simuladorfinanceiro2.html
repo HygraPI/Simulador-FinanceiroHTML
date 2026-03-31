@@ -8,13 +8,15 @@
 </head>
 
 <body style="background-color: black; color: aliceblue;">
-    <h1> Simulador Financeiro - Hygra </h1> <br>
-    Tipo de tecido: <br>
-    <input type="text" id="ipt_tipo"> <br>
-    Quantidade em KG: <br>
-    <input type="number" id="ipt_qtd"> <br>
-    <button onclick="mostrar()">Analisar</button> <br>
-    <div id="div_msg"></div>
+   <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+       <h1> Simulador Financeiro - Hygra </h1> <br>
+       Tipo de tecido: <br>
+       <input type="text" id="ipt_tipo"> <br>
+       Quantidade em Metros: <br>
+       <input type="number" id="ipt_qtd"> <br>
+       <button onclick="mostrar()">Analisar</button> <br>
+       <div id="div_msg" style="display: flex; justify-content: center; align-items: center; flex-direction: column;"></div>
+    </div>
 </body>
 <script>
     function mostrar() {
@@ -32,32 +34,35 @@
         */
         if (tipominusculo != 'algodao' && tipominusculo != 'algodão' && tipominusculo != 'seda' && tipominusculo != 'linho' && tipominusculo != 'lã') {
             alert('Insira um tipo de tecido adotável')
-            ipt_tipo.value = '';
+            ipt_tipo.value = '';}
+        else if ( qtd < 0) {
+            alert('Insira uma quantidade adotável')
+            ipt_qtd.value='';
         }
         else {
 
             if (tipominusculo == 'algodao' || tipominusculo == 'algodão') {
                 porcentagem_perdida = '12%'
                 qtd_perdida = qtd * (12 / 100)
-                perda_R$ = 8.50/*Custo do Kg de algodão em pluma*/ * qtd_perdida;
+                perda_R$ = 25.00/*Custo médio do metro de algodão em pluma*/ * qtd_perdida;
             }
             else if (tipominusculo == 'seda') {
                 porcentagem_perdida = '15%'
                 qtd_perdida = qtd * (15 / 100)
-                perda_R$ = 35.00/*Custo do Kg de Seda*/ * qtd_perdida;
+                perda_R$ = 100.00/*Custo médio do metro de Seda*/ * qtd_perdida;
             }
             else if (tipominusculo == 'linho') {
                 porcentagem_perdida = '10%'
                 qtd_perdida = qtd * (10 / 100)
-                perda_R$ = 22.00 /*Custo do Kg de Linho*/ * qtd_perdida;
+                perda_R$ = 70.00 /*Custo médio do metro de Linho*/ * qtd_perdida;
             }
             else if (tipominusculo == 'lã') {
                 porcentagem_perdida = '9%'
                 qtd_perdida = qtd * (9 / 100)
-                perda_R$ = 200.00 /*Custo do Kg de Lã Natural*/ * qtd_perdida;
+                perda_R$ = 140.00 /*Custo médio do metro de Lã Natural*/ * qtd_perdida;
             }
             div_msg.innerHTML = `A ausência de controle adequado de umidade e temperatura pode comprometer diretamente a qualidade do tecido, favorecendo problemas como deterioração das fibras, surgimento de mofo e redução da durabilidade do material. <br> <br>
-Considerando o ${tipominusculo} que está sendo armazenado, no pior dos cenários podem ocorrer perdas produtivas de até ${porcentagem_perdida}, ou seja, ${qtd_perdida.toFixed(2)}Kg do seu tecido. <br> <br>
+Considerando o/a ${tipominusculo} que está sendo armazenado/a, no pior dos cenários podem ocorrer perdas produtivas de até ${porcentagem_perdida}, ou seja, ${qtd_perdida.toFixed(2)}m do seu tecido. <br> <br>
 Atualmente, essa situação pode estar gerando uma perda estimada de R$${perda_R$.toFixed(2)}, afetando diretamente o seu faturamento e a eficiência da sua operação.<br> <br>
 Sem o monitoramento correto, essas condições tendem a se agravar, aumentando o desperdício e reduzindo a qualidade final do produto. <br>`
             ipt_qtd.value = '';
@@ -66,10 +71,10 @@ Sem o monitoramento correto, essas condições tendem a se agravar, aumentando o
     }
     /* Fontes:
     https://www.edgistify.com/resources/blogs/fabric-care-warehouse-humidity-control-natural-fibers
-    https://cepea.org.br/br/indicador/algodao-a-vista.aspx
-    https://multilojasassussena.com.br/criacao-do-bicho-da-seda-sericicultura-sustentavel-e-lucrativa
-    https://www.selinawamucii.com/pt/percep%C3%A7%C3%B5es/pre%C3%A7os/brasil/linho-linoleo/
-    https://maostiqueiras.com.br/produto/la-natural-cardada-artesanalmente/?srsltid=AfmBOoo-Sp6FMqxlutAJ_IZqexUNaPf4nsOPV2TIxcie7ADnJvbxDlwb
+    https://www.tecidosnainternet.com.br/t/tecidos-de-puro-algodao
+    https://bancodetecido.com.br/produto/bdt03-0665-cetim-de-seda-pura-pois-sob-tex/    
+    https://www.maximustecidos.com.br/tecido-linho-puro-preto-100--linho-957/p
+    https://www.palhadesedatecidos.com.br/index.php?route=product/category&path=383_782
     */
 </script>
 
