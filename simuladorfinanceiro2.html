@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="padraosite.css">
     <title>Simulador Financeiro</title>
 </head>
 
-<body style="background-color: black; color: aliceblue;">
-   <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-       <h1> Simulador Financeiro - Hygra </h1> <br>
+<body class="body">
+    <h1 class="titulo"> Simulador Financeiro - Hygra </h1> <br>
+   <div class="corpo">
        Tipo de tecido: <br>
        <select id="ipt_tipo">
         <option value="0">Selecione...</option>
@@ -21,7 +21,7 @@
        </select>
        Quantidade em Metros: <br>
        <input type="number" id="ipt_qtd"> <br>
-       <button onclick="mostrar()">Analisar</button> <br>
+       <button class="botao" onclick="mostrar()">Analisar</button> <br>
        <div id="div_msg" style="display: flex; justify-content: center; align-items: center; flex-direction: column;"></div>
     </div>
 </body>
@@ -67,7 +67,7 @@
                 perda_R$ = 140.00 /*Custo médio do metro de Lã Natural*/ * qtd_perdida;
             }
             div_msg.innerHTML = `A ausência de controle adequado de umidade e temperatura pode comprometer diretamente a qualidade do tecido, favorecendo problemas como deterioração das fibras, surgimento de mofo e redução da durabilidade do material. <br> <br>
-Considerando o/a ${tipo} que está sendo armazenado/a, no pior dos cenários podem ocorrer perdas produtivas de até ${porcentagem_perdida}, ou seja, ${qtd_perdida.toFixed(2)}m do seu tecido. <br> <br>
+Considerando o/a ${tipo} que está sendo armazenado/a, no pior dos cenários podem ocorrer perdas produtivas de até <b>${porcentagem_perdida}</b>, ou seja, ${qtd_perdida.toFixed(2)}m do seu tecido. <br> <br>
 Atualmente, essa situação pode estar gerando uma perda estimada de R$${perda_R$.toFixed(2)}, afetando diretamente o seu faturamento e a eficiência da sua operação.<br> <br>
 Sem o monitoramento correto, essas condições tendem a se agravar, aumentando o desperdício e reduzindo a qualidade final do produto. <br>`
             ipt_qtd.value = '';
