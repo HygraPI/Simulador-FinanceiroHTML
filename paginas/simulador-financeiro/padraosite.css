@@ -11,20 +11,20 @@
    align-items: center;
    flex-direction: column;
    border-radius: 25PX;
+   margin-top: 50px;
 }
 
 .corpo {
    font-family: 'Poppins', sans-serif;
    display: flex;
-   justify-content: center;
-   align-items: center;
+   justify-self: center;
+   align-items: flex-start;
    flex-direction: column;
    border-radius: 25PX;
    background-color: #929e77;
    align-self: center;
-   margin-top: 50px;
-   margin-left: 400px;
-   margin-right: 400px;
+   /* margin-top: 50px; */
+   width: 600px;
    padding: 100px 100px;
 }
 
@@ -39,23 +39,28 @@
 
 .select {
    font-family: 'Poppins', sans-serif;
+   font-size: 20px;
    background-color: white;
    border: none;
    border-radius: 10px;
    margin-left: 5px;
    margin-right: 5px;
-   width: 100px;
-   height: 20px;
-
+   width: 150px;
+   height: 40px;
+   padding-left: 10px;
+   margin-bottom: 20px;
+   margin-top: -15px;
 }
 
 .input {
    font-family: 'Poppins', sans-serif;
+   font-size: 20px;
    background-color: white;
    border: none;
-   border-radius: 5px;
-   padding: 1px;
-   width: 100px;
-   height: 20px;
+   border-radius: 10px;
+   padding-left: 10px;
+   width: 150px;
+   height: 35px;
+   margin-top: -35px;
 
 }
