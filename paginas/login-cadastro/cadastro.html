@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastre-se ou Entre</title>
-    <link rel="stylesheet" href="../../style.css">
+    <title>Login e cadastro</title>
 </head>
+
 <body>
-    <div class="corpo">
-        <h1>Aqui sera a tela de login/cadstro</h1>
+    <h1>Login:</h1>
+    <div class="Caixa-Login">
+        Email: <br>
+        <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
+        Senha: <br>
+        <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br> <br>
+
+        <button onclick="Mostrar()">Entrar</button>
     </div>
+
+
 </body>
+
 </html>
+<script>
+    let tentativas = 0;
+
+    function Mostrar() {
+        let email = ipt_email.value
+        let senha = ipt_senha.value
+
+        if (email == "admin@123" && senha == "12345") {
+            alert("Login realizado com sucesso!")
+        } else {
+            tentativas = tentativas + 1;
+            if (tentativas < 3) {
+                alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
+            } else {
+                alert("Você tentou muitas vezes. Acesso bloqueado!")
+                ipt_email.disabled = true
+                ipt_senha.disabled = true
+            }
+        }
+    }
+</script>
