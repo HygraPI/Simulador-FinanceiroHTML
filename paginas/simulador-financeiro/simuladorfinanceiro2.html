@@ -66,10 +66,34 @@
                 qtd_perdida = qtd * (9 / 100)
                 perda_R$ = 140.00 /*Custo médio do metro de Lã Natural*/ * qtd_perdida;
             }
-            div_msg.innerHTML = `A ausência de controle adequado de umidade e temperatura pode comprometer diretamente a qualidade do tecido, favorecendo problemas como deterioração das fibras, surgimento de mofo e redução da durabilidade do material. <br> <br>
-Considerando o/a ${tipo} que está sendo armazenado/a, no pior dos cenários podem ocorrer perdas produtivas de até ${porcentagem_perdida}, ou seja, ${qtd_perdida.toFixed(2)}m do seu tecido. <br> <br>
-Atualmente, essa situação pode estar gerando uma perda estimada de R$${perda_R$.toFixed(2)}, afetando diretamente o seu faturamento e a eficiência da sua operação.<br> <br>
-Sem o monitoramento correto, essas condições tendem a se agravar, aumentando o desperdício e reduzindo a qualidade final do produto. <br>`
+//             div_msg.innerHTML = `A ausência de controle adequado de umidade e temperatura pode comprometer diretamente a qualidade do tecido, favorecendo problemas como deterioração das fibras, surgimento de mofo e redução da durabilidade do material. <br> <br>
+// Considerando o/a ${tipo} que está sendo armazenado/a, no pior dos cenários podem ocorrer perdas produtivas de até ${porcentagem_perdida}, ou seja, ${qtd_perdida.toFixed(2)}m do seu tecido. <br> <br>
+// Atualmente, essa situação pode estar gerando uma perda estimada de R$${perda_R$.toFixed(2)}, afetando diretamente o seu faturamento e a eficiência da sua operação.<br> <br>
+// Sem o monitoramento correto, essas condições tendem a se agravar, aumentando o desperdício e reduzindo a qualidade final do produto. <br>`
+// esse era como estava antes
+
+            //novo resultado
+            div_msg.innerHTML = `
+            <div class="div-resultado">
+                <h3 class="h3-resultado">Resultado da Análise</h3>
+                
+                <p class="p-resultado">
+                    <strong>Tecido:</strong> ${tipo}<br>
+                    <strong>Quantidade:</strong> ${qtd}m
+                </p>
+                
+                <p class="p-resultado">
+                    <strong>Taxa de perda estimada:</strong> ${porcentagem_perdida}<br>
+                    <strong>Quantidade danificada:</strong> ${qtd_perdida.toFixed(2)}m<br>
+                    <strong style="color: #d63031; font-size: 18px;">Prejuízo: R$ ${perda_R$.toFixed(2)}</strong>
+                </p>
+                
+                <p class="p-resultado-risco">
+                    A falta de controle de umidade e temperatura causa deterioração das fibras, mofo e redução da durabilidade. Um monitoramento adequado previne essas perdas e protege seu faturamento.
+                </p>
+            </div>
+            `
+
             ipt_qtd.value = '';
             ipt_tipo.value = '';
         }
