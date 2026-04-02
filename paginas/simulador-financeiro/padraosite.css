@@ -18,7 +18,7 @@
    font-family: 'Poppins', sans-serif;
    display: flex;
    justify-self: center;
-   align-items: flex-start;
+   align-items: center;
    flex-direction: column;
    border-radius: 25PX;
    background-color: #929e77;
@@ -67,6 +67,11 @@
 
 }
 
+hr {
+   width: 500px;
+}
+
+/* estilizaçao do resultado novo */
 .div-resultado {
    background: #f5f5f5; 
    padding: 20px; 
