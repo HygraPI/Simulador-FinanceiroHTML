@@ -8,15 +8,28 @@
 </head>
 
 <body>
-    <h1>Login:</h1>
+    <H1>Login:</H1>
     <div class="Caixa-Login">
         Email: <br>
         <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
         Senha: <br>
         <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br> <br>
 
-        <button onclick="Mostrar()">Entrar</button>
+        <button onclick="Login()">Entrar</button>
     </div>
+    <br><br>
+    <h1>Cadastro:</h1>
+    <div class="Caixa-Cadastro">
+        Email: <br>
+        <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
+        Crie uma senha: <br>
+        <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br><br>
+        Confirme sua senha: <br>
+        <input id="ipt_confirmarSenha" type="password" placeholder="Insira a senha novamente">
+        <br><br>
+        <button onclick="Cadastro()">Finalizar cadastro</button>
+    </div>
+
 
 
 </body>
@@ -25,7 +38,24 @@
 <script>
     let tentativas = 0;
 
-    function Mostrar() {
+    function Login () {
+        let email = ipt_email.value
+        let senha = ipt_senha.value
+
+        if (email == "admin@123" && senha == "12345") {
+            alert("Login realizado com sucesso!")
+        } else {
+            tentativas = tentativas + 1;
+            if (tentativas < 3) {
+                alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
+            } else {
+                alert("Você tentou muitas vezes. Acesso bloqueado!")
+                ipt_email.disabled = true
+                ipt_senha.disabled = true
+            }
+        }
+    }
+    function Cadastro () {
         let email = ipt_email.value
         let senha = ipt_senha.value
 
