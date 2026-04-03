@@ -98,6 +98,12 @@ body {
    color: white;
    font-family: 'Poppins', sans-serif;
    border-radius: 15px;
+   transition: all 0.3s ease;
+}
+
+.button-header:hover {
+   width: 80px;
+   height: 50px;
 }
 /* fim estilizacao header */
 
@@ -142,6 +148,12 @@ body {
    font-family: 'Poppins', sans-serif;
    border-radius: 15px;
    font-size: 25px;
+   transition: all 0.3s ease;
+}
+
+.secao1-button1:hover {
+   width: 250px;
+   height: 70px;
 }
 
 .secao1-button2 {
@@ -154,6 +166,12 @@ body {
    border-radius: 15px;
    border: 3px solid;
    border-color: rgba(0, 0, 0, 0.158);
+   transition: all 0.3s ease;
+}
+
+.secao1-button2:hover {
+   width: 440px;
+   height: 70px;
 }
 
 .secao1-organizacao-button {
@@ -278,4 +296,10 @@ body {
 .tecnologias img {
    width: 600px;
    height: 400px;
+   transition: all 0.3s ease; /* isso aqui serve pra deixar a animaçao de aumentar a imagem mais fluida */
+}
+
+.tecnologias img:hover {
+   width: 600px;
+   height: 450px;
 }
