@@ -303,3 +303,9 @@ body {
    width: 600px;
    height: 450px;
 }
+
+.grafico{
+   display: flex;
+   align-items: start;
+   justify-content: start;
+}

@@ -1,53 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="C:\Users\gordu\OneDrive\Área de Trabalho\gordura\Faculdade\PI-Caramico\01\semestre1\Sprint2\SiteEstaticoHTML-CSS\paginas\simulador-financeiro\padraosite.css">
+    <link rel="stylesheet" href="../../style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard</title>
 </head>
+
 <body>
 
-    <h1>Graphics</h1>
-    <div style="display: flex;">
-        <div style="width: 50%;">
-            <canvas id="sensorAnalogico"></canvas>
-        </div>
+    <div class="grafico">
         <div style="width: 50%;">
             <canvas id="sensorDigital"></canvas>
         </div>
     </div>
 
     <script>
-        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Temperatura',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#ED145B'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(%)'
-                        },
-                        beginAtZero: true,
-                    },
-                },
-            }
-        });
-
         var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-            type: 'line',
+            type: 'bar',
             data: {
+                labels: [],
                 datasets: [{
                     label: 'Umidade',
                     borderColor: '#63B1BC',
@@ -62,17 +36,19 @@
                     y: {
                         title: {
                             display: true,
-                            text: '(0-1)'
+                            text: '(%)'
                         },
                         beginAtZero: true
                     }
                 }
             }
+
         });
 
         var paginacao = {};
         var tempo = {};
 
+        /*
         function obterDados(grafico, endpoint) {
             fetch('http://localhost:3300/sensores/' + endpoint)
                 .then(response => response.json())
@@ -101,12 +77,31 @@
                 })
                 .catch(error => console.error('Erro ao obter dados:', error));
         }
+        */
 
         setInterval(() => {
-            obterDados(sensorAnalogico, 'analogico');
-            obterDados(sensorDigital, 'digital');
+            obterDadosMock(sensorDigital);
         }, 1000);
+
+        let contagem  = 0;
+
+        function obterDadosMock(grafico) {
+
+            let valorMock = (Math.random() * 100).toFixed(2); 
+            contagem++
+
+            if(grafico.data.labels.length == 10){
+                grafico.data.labels.shift()
+                grafico.data.datasets[0].data.shift()
+            }
+
+            grafico.data.labels.push(contagem);
+            grafico.data.datasets[0].data.push(valorMock);
+
+            grafico.update();
+        }
 
     </script>
 </body>
+
 </html>
