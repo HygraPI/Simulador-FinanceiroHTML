@@ -7,7 +7,7 @@
 
 - Média de taxa de umidade na última semana;
 
-- Taxa de umidade média atual (°C).
+- Taxa de umidade média atual (%).
 
 - Custo evitado (R$);
 
