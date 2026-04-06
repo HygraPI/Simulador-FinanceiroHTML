@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+/* LADO ESQUERDO */
+.esquerda {
+    width: 55%;
+    background: url("../../imagens/fundo.png");
+    background-size: cover;
+
+    /* corte diagonal */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+/* LADO DIREITO */
+.direita {
+    width: 45%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* BOX LOGIN */
+.login-box {
+    width: 65%;
+    text-align: center;
+}
+
+/* LOGO */
+.logo {
+    width: 130px;
+    margin-bottom: 90px;
+}
+
+/* TITULO */
+.login-box h1 {
+    font-size: 42px;
+    margin-bottom: 30px;
+    margin-top: -70px;
+    color: #4a4a4a;
+}
+
+.login-box h4 {
+    display: block;
+    text-align: left;
+    margin: 20px 0 10px;
+    color: #7a7a7a;
+}
+
+/* INPUTS */
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ddd;
+    margin-bottom: 15px;
+}
+
+/* BOTÃO */
+.entrar {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: #8a946f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.entrar:hover {
+    background-color: #6f7758;
+}

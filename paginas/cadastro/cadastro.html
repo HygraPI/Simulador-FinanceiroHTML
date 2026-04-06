@@ -4,20 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login e cadastro</title>
+    <title>Cadastro</title>
 </head>
 
 <body>
-    <H1>Login:</H1>
-    <div class="Caixa-Login">
-        Email: <br>
-        <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
-        Senha: <br>
-        <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br> <br>
-
-        <button onclick="Login()">Entrar</button>
-    </div>
-    <br><br>
     <h1>Cadastro:</h1>
     <div class="Caixa-Cadastro">
         Email: <br>
@@ -29,32 +19,12 @@
         <br><br>
         <button onclick="Cadastro()">Finalizar cadastro</button>
     </div>
-
-
-
 </body>
 
 </html>
 <script>
     let tentativas = 0;
 
-    function Login () {
-        let email = ipt_email.value
-        let senha = ipt_senha.value
-
-        if (email == "admin@123" && senha == "12345") {
-            alert("Login realizado com sucesso!")
-        } else {
-            tentativas = tentativas + 1;
-            if (tentativas < 3) {
-                alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
-            } else {
-                alert("Você tentou muitas vezes. Acesso bloqueado!")
-                ipt_email.disabled = true
-                ipt_senha.disabled = true
-            }
-        }
-    }
     function Cadastro () {
         let email = ipt_email.value
         let senha = ipt_senha.value
