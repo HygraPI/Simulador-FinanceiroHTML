@@ -18,7 +18,7 @@
         </div>
     </header>
 
-    
+
     <div class="grafico">
         <div style="width: 50%;">
             <canvas id="sensorDigital"></canvas>
@@ -29,7 +29,12 @@
         <div style="width: 50%;">
             <canvas id="sensorDigital2"></canvas>
         </div>
+    </div>
 
+    <div class="grafico">
+        <div style="width: 50%;">
+            <canvas id="sensorDigital3"></canvas>
+        </div>
     </div>
 
     <script>
@@ -60,15 +65,15 @@
 
         });
 
-         var sensorDigital2 = new Chart(document.getElementById('sensorDigital2').getContext('2d'), {
+        var sensorDigital2 = new Chart(document.getElementById('sensorDigital2').getContext('2d'), {
             type: 'bar',
             data: {
-                labels: ['Setor1A','Setor1B','Setor1C','Setor2A','Setor2B'],
+                labels: ['Setor1A', 'Setor1B', 'Setor1C', 'Setor2A', 'Setor2B'],
                 datasets: [{
                     label: 'Alertas',
                     borderColor: '#63B1BC',
                     backgroundColor: 'red',
-                    data: [3,2,10,2,0]  
+                    data: [3, 2, 10, 2, 0]
                 }]
             },
             options: {
@@ -87,6 +92,35 @@
             }
 
         });
+
+        var sensorDigita3 = new Chart(document.getElementById('sensorDigital3').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['01/04/2026 | 1A', '02/04/2026 | 1A', '03/04/2026 | 1A', '04/04/2026 | 1A'],
+                datasets: [{
+                    label: 'tempo fora da faixa ideal de umidade por setor',
+                    borderColor: '#63B1BC',
+                    backgroundColor: 'blue',
+                    data: [2, 1, 4, 5, 2]
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(Qtd)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+
+        });
+
 
         var paginacao = {};
         var tempo = {};
@@ -126,17 +160,17 @@
             obterDadosMock(sensorDigital);
         }, 1000);
 
-        let contagem  = 0;
+        let contagem = 0;
 
         function obterDadosMock(grafico) {
 
-            let valorMock = (Math.random() * 100).toFixed(0); 
+            let valorMock = (Math.random() * 100).toFixed(0);
             contagem = contagem + 1;
             if (valorMock > 100) {
-                valorMock == 100; 
+                valorMock == 100;
             }
 
-            if(grafico.data.labels.length == 10){
+            if (grafico.data.labels.length == 10) {
                 grafico.data.labels.shift()
                 grafico.data.datasets[0].data.shift()
             }
@@ -147,7 +181,7 @@
             grafico.update();
         }
 
-        
+
 
     </script>
 </body>
