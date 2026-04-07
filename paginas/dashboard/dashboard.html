@@ -16,7 +16,6 @@
             <img class="img-header" src="../../imagens/logo-sem-fundo.png">
             <h3 class="h3-header">Hygra</h3>
         </div>
-        <a href="paginas/login-cadastro/cadastro.html"><button class="button-header">Entrar</button></a>
     </header>
 
     
@@ -26,9 +25,16 @@
         </div>
     </div>
 
+    <div class="grafico">
+        <div style="width: 50%;">
+            <canvas id="sensorDigital2"></canvas>
+        </div>
+
+    </div>
+
     <script>
         var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: [],
                 datasets: [{
@@ -46,6 +52,34 @@
                         title: {
                             display: true,
                             text: '(%)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+
+        });
+
+         var sensorDigital2 = new Chart(document.getElementById('sensorDigital2').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Setor1A','Setor1B','Setor1C','Setor2A','Setor2B'],
+                datasets: [{
+                    label: 'Alertas',
+                    borderColor: '#63B1BC',
+                    backgroundColor: 'red',
+                    data: [3,2,10,2,0]  
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(Qtd)'
                         },
                         beginAtZero: true
                     }
@@ -90,7 +124,7 @@
 
         setInterval(() => {
             obterDadosMock(sensorDigital);
-        }, 5000);
+        }, 1000);
 
         let contagem  = 0;
 
@@ -98,6 +132,9 @@
 
             let valorMock = (Math.random() * 100).toFixed(0); 
             contagem = contagem + 1;
+            if (valorMock > 100) {
+                valorMock == 100; 
+            }
 
             if(grafico.data.labels.length == 10){
                 grafico.data.labels.shift()
@@ -109,6 +146,8 @@
 
             grafico.update();
         }
+
+        
 
     </script>
 </body>
