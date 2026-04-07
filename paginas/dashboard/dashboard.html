@@ -4,13 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard</title>
 </head>
 
 <body>
 
+    <header class="header">
+        <div class="header-left">
+            <img class="img-header" src="../../imagens/logo-sem-fundo.png">
+            <h3 class="h3-header">Hygra</h3>
+        </div>
+        <a href="paginas/login-cadastro/cadastro.html"><button class="button-header">Entrar</button></a>
+    </header>
+
+    
     <div class="grafico">
         <div style="width: 50%;">
             <canvas id="sensorDigital"></canvas>
@@ -81,14 +90,14 @@
 
         setInterval(() => {
             obterDadosMock(sensorDigital);
-        }, 1000);
+        }, 5000);
 
         let contagem  = 0;
 
         function obterDadosMock(grafico) {
 
-            let valorMock = (Math.random() * 100).toFixed(2); 
-            contagem++
+            let valorMock = (Math.random() * 100).toFixed(0); 
+            contagem = contagem + 1;
 
             if(grafico.data.labels.length == 10){
                 grafico.data.labels.shift()
