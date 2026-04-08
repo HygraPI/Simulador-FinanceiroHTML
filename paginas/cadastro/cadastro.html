@@ -5,19 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="../../css/login-cadastro.css">
 </head>
 
 <body>
-    <h1>Cadastro:</h1>
-    <div class="Caixa-Cadastro">
-        Email: <br>
-        <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
-        Crie uma senha: <br>
-        <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br><br>
-        Confirme sua senha: <br>
-        <input id="ipt_confirmarSenha" type="password" placeholder="Insira a senha novamente">
-        <br><br>
-        <button onclick="Cadastro()">Finalizar cadastro</button>
+
+    <div class="container-cadastro">
+
+        <div class="canto_esquerdo"></div>
+
+
+        <div id="cadastro" class="Caixa-Cadastro">
+            
+            <a href="../../index.html"><button class="btn-voltar">← Voltar</button></a>
+
+            <div class="inicial">
+                <img src="../../imagens/logo hygra.png">
+                <h1>Faça o seu cadastro:</h1>
+            </div>
+
+            <div class="campos">
+
+                <div class="campo">
+                    <h4>Nome completo:</h4> <br>
+                    <input id="ipt_empresa" type="text" placeholder="Insira seu Nome "><br><br>
+
+                    <h4>Email:</h4> <br>
+                    <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
+
+                    <h4>CPF:</h4> <br>
+                    <input id="ipt_cpf" placeholder="Insira seu cpf"> <br><br>
+
+                </div>
+
+                <div class="campo">
+                    <h4>Crie uma senha:</h4> <br>
+                    <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br><br>
+
+                    <h4>Confirme sua senha:</h4> <br>
+                    <input id="ipt_confirmarSenha" type="password" placeholder="Insira a senha novamente">
+                    <br><br>
+
+                    <h4>Código de ativação:</h4> <br>
+                    <input id="codigo" type="text" placeholder="Insira o código de ativação">
+                    <br><br>
+                </div>
+            </div>
+
+            <button onclick="Cadastro()">FINALIZAR CADASTRO</button>
+            <div id="msg"></div>
+
+        </div>
+
+
+        <div class="canto_direito"></div>
+
     </div>
 </body>
 
@@ -25,7 +67,7 @@
 <script>
     let tentativas = 0;
 
-    function Cadastro () {
+    function Cadastro() {
         let email = ipt_email.value
         let senha = ipt_senha.value
 
@@ -35,6 +77,7 @@
             tentativas = tentativas + 1;
             if (tentativas < 3) {
                 alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
+                return false
             } else {
                 alert("Você tentou muitas vezes. Acesso bloqueado!")
                 ipt_email.disabled = true

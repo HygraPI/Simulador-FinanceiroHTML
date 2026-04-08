@@ -5,32 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../../css/login-cadastro.css">
 </head>
 
 <body>
 
-<div class="container">
+<div class="container-login">
 
     <!-- LADO ESQUERDO (IMAGEM) -->
-    <div class="esquerda"></div>
+    <div class="esquerda-fundo"></div>
 
     <!-- LADO DIREITO (LOGIN) -->
-    <div class="direita">
-        <div class="login-box">
-            <img src="../../imagens/logo hygra.png" alt="Logo Hygra" class="logo">
+    <div class="direita-form">
+        <div class="caixa-login">
+
+            <a href="../../index.html"><button class="btn-voltar">← Voltar</button></a>
+
+            <img src="../../imagens/logo hygra.png" alt="Logo Hygra" class="logo-login">
 
             <h1>Faça o seu login</h1>
 
             <h4>Seu E-mail</h4>
-            <input type="email" id="ipt_email" placeholder="Digite seu email...">
+            <input type="email" id="ipt_email" placeholder="Insira seu email...">
 
             <h4>Sua Senha</h4>
-            <input type="password" id="ipt_senha" placeholder="Digite sua senha...">
+            <input type="password" id="ipt_senha" placeholder="Insira sua senha...">
 
-            <button class="entrar" onclick="Login()"><a href="../dashboard/dashboard.html">ENTRAR</a></button><br><br><br>
+            <a href="../dashboard/dashboard.html"><button onclick="Login()">ENTRAR</button></a><br><br><br>
 
-            Não tem uma conta? <a href="cadastro.html">Crie a sua conta Hygra</a>
+            Não tem uma conta? <a href="../cadastro/cadastro.html">Crie a sua conta Hygra</a>
             
         </div>
     </div>

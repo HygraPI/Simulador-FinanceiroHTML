@@ -1,0 +1,194 @@
+/* Login */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+.container-login {
+    display: flex;
+    height: 100%;
+}
+
+.esquerda-fundo {
+    width: 55%;
+    background: url("../imagens/fundo.png");
+    background-size: cover;
+
+    /* corte diagonal */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+.direita-form {
+    width: 45%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caixa-login {
+    width: 65%;
+    text-align: center;
+}
+
+.caixa-login img {
+    width: 130px;
+    margin-bottom: 90px;
+}
+
+.caixa-login h1 {
+    font-size: 42px;
+    margin-bottom: 30px;
+    margin-top: -70px;
+    color: #4a4a4a;
+}
+
+.caixa-login h4 {
+    display: block;
+    text-align: left;
+    margin: 20px 0 10px;
+    color: #7a7a7a;
+}
+
+.caixa-login input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ddd;
+    margin-bottom: 15px;
+}
+
+.caixa-login button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: #8a946f;
+    
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.caixa-login button:hover {
+    background-color: #6f7758;
+}
+
+
+
+
+/* Cadastro */
+
+.container-cadastro {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.canto_direito,
+.canto_esquerdo {
+    width: 25%;
+    background: url("../imagens/fundo.png");
+    background-size: cover;
+}
+
+.Caixa-Cadastro {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.inicial img {
+    width: 130px;
+}
+
+.inicial h1 {
+    color: #4a4a4a;
+}
+
+.Caixa-Cadastro h4{
+    display: block;
+    text-align: left;
+    color: #7A7A7A;
+    justify-content: right;
+    margin-bottom: 5px;
+    position: relative;
+    left: 10px
+}
+
+.Caixa-Cadastro input {
+    width: 300px;
+    height: 40px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ddd;
+    margin-top: -22px;
+    margin-top: -5px;
+}
+
+.Caixa-Cadastro button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: #8a946f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    align-items: center;
+}
+
+.Caixa-Cadastro button:hover {
+    background-color: #6f7758;
+}
+
+.campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.campo {
+        flex-direction: column;
+        display: flex;
+        margin-top: 50px;
+        margin-bottom: 15px;
+}
+
+.btn-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-voltar:hover {
+    color: #8a946f;
+}
