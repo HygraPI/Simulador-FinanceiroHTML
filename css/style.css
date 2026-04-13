@@ -296,7 +296,7 @@ body {
 }
 
 .tecnologias img {
-   width: 600px;
+   width: 500px;
    height: 400px;
    transition: all 0.3s ease;
    /* isso aqui serve pra deixar a animaçao de aumentar a imagem mais fluida */
@@ -306,6 +306,24 @@ body {
    width: 600px;
    height: 450px;
 }
+
+/* FIM DA ESTILIZACAO DA SECAO TECNOLOGIAS */
+
+/* ESTILIZACAO DO FOOTER */
+
+.footer {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+   width: 100%;
+   height: 80px;
+   background-color: #d7dbd2;
+   font-family: Poppins, sans-serif;
+}  
+
+/* FIM DA ESTILIZACAO DO FOOTER */
 
 .corpodashboard {
    font-family: 'Poppins', sans-serif;
