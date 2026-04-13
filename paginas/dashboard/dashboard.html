@@ -79,14 +79,15 @@
                     label: 'Mínimo Ideal',
                     borderColor: '#f6c23e',
                     borderDash: [5, 5],
-                    pointRadius: 0
+                    pointRadius: 0,
+                    data: [45,45,45,45,45,45,45,45,45,45]
                 },
-
                 {
                     label: 'Máximo Ideal',
                     borderColor: '#e74a3b',
                     borderDash: [5, 5],
-                    pointRadius: 0
+                    pointRadius: 0,
+                    data: [55,55,55,55,55,55,55,55,55,55]
                 }
                 ]
             },
@@ -264,15 +265,12 @@
 
             grafico.data.labels.push(contagem);
             grafico.data.datasets[0].data.push(valorMock);
-            grafico.update();
+
 
             grafico.data.datasets[1].data.push(45);
             grafico.data.datasets[2].data.push(55);
 
-            if (grafico.data.datasets[1].data.length == 10) {
-                grafico.data.datasets[1].data.shift();
-                grafico.data.datasets[2].data.shift();
-            }
+            grafico.update();
         }
 
 
