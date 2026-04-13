@@ -31,7 +31,7 @@
             <h4>Sua Senha</h4>
             <input type="password" id="ipt_senha" placeholder="Insira sua senha...">
 
-            <a href="../dashboard/dashboard.html"><button onclick="Login()">ENTRAR</button></a><br><br><br>
+            <button onclick="Login()">ENTRAR</button><br><br><br>
 
             Não tem uma conta? <a href="../cadastro/cadastro.html">Crie a sua conta Hygra</a>
             
@@ -54,6 +54,7 @@
 
         if (email == "admin@123" && senha == "12345") {
             alert("Login realizado com sucesso!")
+            window.location.href = "../dashboard/dashboard.html";
         } else {
             tentativas = tentativas + 1;
             if (tentativas < 3) {
