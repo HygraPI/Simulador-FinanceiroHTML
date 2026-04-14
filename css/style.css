@@ -442,6 +442,95 @@ select {
    font-family: Poppins, sans-serif;
    border-radius: 25px;
    background-color: #F1F2F0;
+   transition: all 0.5s ease;
+}
+
+.importancia-cards div:hover {
+   width: 450px;
 }
 
 /* FIM DA ESTILIZACAO DA SECAO IMPORTANCIA */
+
+/* INICIO DA ESTILIZACAO CALCULADORA FINANCEIRA */
+
+.calculadora-financeira {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   font-family: Poppins, sans-serif;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+   padding-bottom: 150px;
+   background-color: #dfdfdf;
+   padding-top: 80px;
+}
+
+.calculadora-financeira h1 {
+   font-size: 60px;
+   width: 800px;
+   text-align: left;
+   margin-bottom: -10px;
+}
+
+.calculadora-financeira-textos {
+   display: flex;
+   flex-direction: column;
+   width: 600px;
+   text-align: justify;
+}
+
+.calculadora-financeira-subtexto {
+   color: rgba(0, 0, 0, 0.418);
+   font-size: 12px;
+   margin-top: -5px;
+}
+
+.calculadora-form {
+   display: flex;
+   flex-direction: column;
+   margin-top: 50px;
+   background-color: #929e7771;
+   height: 450px;
+   width: 400px;
+   padding: 50px;
+   border-radius: 25px;
+}
+
+.calculadora-form h3 {
+   margin-top: -20px;
+   font-size: 22px;
+}
+
+.calculadora-form button {
+   background-color: black;
+   color: white;
+   border: none;
+   border-radius: 10px;
+   width: 400px;
+   height: 40px;
+   font-family: Poppins, sans-serif;
+}
+
+.calculadora-form select {
+   margin-bottom: 15px;
+}
+
+.calculadora-form input {
+   height: 20px;
+   border-radius: 10px;
+   border: none;
+   margin-bottom: 15px;
+   padding: 10px;
+}
+
+.div-resultado {
+   display: flex;
+   flex-direction: column;
+   margin-top: 50px;
+   background-color: #F1F2F0;
+   height: 370px;
+   width: 300px;
+   padding: 50px;
+   border-radius: 25px;
+}
+
+/* FIM DA ESTILIZACAO CALCULADORA FINANCEIRA */
