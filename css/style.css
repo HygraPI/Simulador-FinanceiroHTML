@@ -334,7 +334,7 @@ body {
    background-color: white;
    border-radius: 32px;
    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-   height: 400px;
+   height: 250px;
    display: flex;
    flex-direction: column;
    gap: 1px;
@@ -352,14 +352,14 @@ body {
 .kpis {
    display: flex;
    justify-content: center;
-   gap: 180px;
-   margin: 20px;
+   gap: 100px;
+   margin: 10px;
 }
 
 .kpi {
    display: flex;
    background-color: white;
-   padding: 33px;
+   padding: 10px;
    border-radius: 12px;
    box-shadow: 0 5px 8px rgb(126, 126, 126);
    transition: transform 0.2s ease, box-shadow 0.2s ease;
