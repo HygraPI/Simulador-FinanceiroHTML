@@ -364,7 +364,9 @@ body {
    box-shadow: 0 5px 8px rgb(126, 126, 126);
    transition: transform 0.2s ease, box-shadow 0.2s ease;
    justify-content: center;
+   align-items: center;
    flex-wrap: wrap;
+   flex-direction: column;
 }
 
 .kpi_titulo {
