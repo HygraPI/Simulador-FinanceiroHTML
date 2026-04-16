@@ -390,21 +390,23 @@ body {
    border-radius: 12px;
    box-shadow: 0 5px 8px rgb(126, 126, 126);
    transition: transform 0.2s ease, box-shadow 0.2s ease;
-   justify-content: center;
+   justify-content: space-around;
    align-items: center;
    flex-wrap: wrap;
    flex-direction: column;
+   width: 220px;
+   height: 140px;
 }
 
 .kpi_titulo {
    font-size: 14px;
    color: #6c757d;
-   margin: 0;
+
 }
 
 .kpi_valor {
    font-size: 28px;
-   margin-top: 10px;
+   margin-top: 5px;
    font-weight: 600;
    color: #2c3e50;
 }
@@ -412,6 +414,14 @@ body {
 .kpi_destaque {
    border-left: 5px solid #2c7be5;
 }
+
+.kpi_legenda {
+   font-size: 15px;
+   color: #6c757d;
+   margin-top: -20px;
+}
+
+
 
 .containerkpi {
    max-width: 2000px;
