@@ -73,6 +73,13 @@ body {
    background-color: #F1F2F0;
 }
 
+.header-msg {
+   margin-right: 100px;
+   display: flex;
+   
+}
+
+
 .header-nav {
    display: flex;
    align-items: center;
