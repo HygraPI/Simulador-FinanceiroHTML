@@ -330,6 +330,8 @@ body {
    width: 500px;
    height: 400px;
    transition: all 0.3s ease;
+   border-radius: 25px;
+   object-fit: cover;
    /* isso aqui serve pra deixar a animaçao de aumentar a imagem mais fluida */
 }
 
