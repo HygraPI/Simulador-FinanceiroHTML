@@ -477,14 +477,30 @@ select {
    margin-right: 100px;
 }
 
+.importancia-cards p {
+   text-align: justify;
+}
+
 .importancia-cards div {
    width: 400px;
-   border: 2px solid #80808041;
+   height: 200px;
    padding: 20px;
    font-family: Poppins, sans-serif;
    border-radius: 25px;
    background-color: #F1F2F0;
    transition: all 0.5s ease;
+}
+
+.importancia-card-sensivel {
+   border: 2px solid rgba(67, 132, 230, 0.315);
+}
+
+.importancia-card-ambiental {
+   border: 2px solid rgba(12, 133, 38, 0.315);
+}
+
+.importancia-card-perda {
+   border: 2px solid rgba(230, 67, 67, 0.315);
 }
 
 .importancia-cards div:hover {
