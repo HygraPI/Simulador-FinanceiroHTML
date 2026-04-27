@@ -19,7 +19,7 @@
         <h3 class="header-msg">Olá, <b>Admin</b>!</h3>
 
         <a href="../login/login.html"><button class="button-header">Voltar</button></a>
-        
+
     </header>
     <div class="containerkpi">
         <div class="kpis">
@@ -36,7 +36,7 @@
             <div class="kpi_destaque kpi">
                 <p class="kpi_titulo"> Custo evitado:</p>
                 <h2 class="kpi_valor"> R$13.000,00 </h2>
-                
+
             </div>
             <div class="kpi">
                 <p class="kpi_titulo"> Sensor em Alerta:</p>
@@ -62,41 +62,53 @@
 
     <div class="graficoslinha">
         <div class="grafico">
-            <div class="grafico_titulo">Alertas por setor</div>
-            <canvas id="sensorDigital2"></canvas>
+            <div class="grafico_titulo">
+                <p>Alertas por setor</p>
+                <div>
+                    <canvas id="sensorDigital2"></canvas>
+                </div>
+            </div>
+
         </div>
 
         <div class="grafico">
-            <div class="grafico_titulo">Tempo fora da faixa ideal</div>
-            <canvas id="sensorDigital3"></canvas>
+            <div class="grafico_titulo">
+                <p>Tempo fora da faixa ideal</p>
+                <div>
+                    <canvas id="sensorDigital3"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+
+        /*
+        grafico.data.datasets[0].data = [];
+        */
         var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
             type: 'line',
             data: {
                 labels: [],
-                datasets: [{
-                    label: 'Umidade',
-                    borderColor: '#4e73df',
-                    backgroundColor: 'rgba(78, 115, 223, 0.1)',
-                    fill: true
-                },
-                {
-                    label: 'Mínimo Ideal',
-                    borderColor: '#f6c23e',
-                    borderDash: [5, 5],
-                    pointRadius: 0,
-                    data: [45,45,45,45,45,45,45,45,45,45]
-                },
-                {
-                    label: 'Máximo Ideal',
-                    borderColor: '#e74a3b',
-                    borderDash: [5, 5],
-                    pointRadius: 0,
-                    data: [55,55,55,55,55,55,55,55,55,55]
-                }
+                datasets: [
+                    {
+                        label: 'Umidade',
+                        borderColor: '#4e73df',
+                        backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                        fill: true
+                    },
+                    {
+                        label: 'Mínimo Ideal',
+                        borderColor: '#f6c23e',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                    },
+                    {
+                        label: 'Máximo Ideal',
+                        borderColor: '#e74a3b',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                    }
                 ]
             },
             options: {
@@ -126,7 +138,7 @@
                     label: 'Alertas',
                     borderColor: '#63B1BC',
                     backgroundColor: '#BB0E22',
-                    borderRadius: 6,
+                    borderRadius: 20,
                     data: [3, 2, 10, 2, 0]
                 }]
             },
@@ -153,6 +165,7 @@
             }
         });
 
+
         var sensorDigital3 = new Chart(document.getElementById('sensorDigital3').getContext('2d'), {
             type: 'bar',
             data: {
@@ -161,6 +174,7 @@
                     label: 'Horas fora da faixa ideal de umidade',
                     borderColor: '#63B1BC',
                     backgroundColor: 'orange',
+                    borderRadius: 20,
                     data: [2, 1, 4, 5, 2]
                 }]
             },
@@ -190,38 +204,6 @@
 
         var paginacao = {};
         var tempo = {};
-
-        /*
-        function obterDados(grafico, endpoint) {
-            fetch('http://localhost:3300/sensores/' + endpoint)
-                .then(response => response.json())
-                .then(valores => {
-                    if (paginacao[endpoint] == null) {
-                        paginacao[endpoint] = 0;
-                    }
-                    if (tempo[endpoint] == null) {
-                        tempo[endpoint] = 0;
-                    }
-
-                    var ultimaPaginacao = paginacao[endpoint];
-                    paginacao[endpoint] = valores.length;
-                    valores = valores.slice(ultimaPaginacao);
-
-                    valores.forEach((valor) => {
-                        if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                            grafico.data.labels.shift();
-                            grafico.data.datasets[0].data.shift();
-                        }
-
-                        grafico.data.labels.push(tempo[endpoint]++);
-                        grafico.data.datasets[0].data.push(parseFloat(valor));
-                        grafico.update();
-                    });
-                })
-                .catch(error => console.error('Erro ao obter dados:', error));
-        }
-        */
-
 
         let sensor_atual = '';
 
@@ -261,10 +243,6 @@
 
             let valorMock = (Math.random() * 100).toFixed(0);
             contagem = contagem + 1;
-
-            if (valorMock > 100) {
-                valorMock == 100;
-            }
 
             if (grafico.data.labels.length == 10) {
                 grafico.data.labels.shift()

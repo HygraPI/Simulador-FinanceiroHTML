@@ -378,7 +378,7 @@ body {
 }
 
 .grafico canvas {
-   height: 100%;
+   width: 380px;
    flex: 1;
 }
 
@@ -427,8 +427,6 @@ body {
    margin-top: -20px;
 }
 
-
-
 .containerkpi {
    max-width: 2000px;
    margin: auto;
@@ -452,7 +450,6 @@ select {
 .grafico_titulo {
    font-weight: 500;
    font-size: 20px;
-
 }
 
 /* INICIO ESTILIZACAO DA SECAO IMPORTANCIA */
