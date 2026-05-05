@@ -539,7 +539,19 @@ select {
 .calculadora-financeira-subtexto {
    color: rgba(0, 0, 0, 0.418);
    font-size: 12px;
-   margin-top: -5px;
+   margin-top: 10px;
+}
+
+.calculadora-financeira-subtexto a {
+   color: #2f4fa7;
+   text-decoration: none;
+   font-weight: 600;
+   transition: color 0.3s ease;
+}
+
+.calculadora-financeira-subtexto a:hover {
+   color: #1a2e63;
+   text-decoration: underline;
 }
 
 .calculadora-form {
