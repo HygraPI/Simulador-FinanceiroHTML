@@ -18,7 +18,7 @@ body {
 
 .esquerda-fundo {
     width: 55%;
-    background: url("../imagens/fundo.png");
+    background: url("../assets/imgs/fundo.png");
     background-size: cover;
 
     /* corte diagonal */
@@ -97,7 +97,7 @@ body {
 .canto_direito,
 .canto_esquerdo {
     width: 25%;
-    background: url("../imagens/fundo.png");
+    background: url("../assets/imgs/fundo.png");
     background-size: cover;
 }
 
@@ -191,4 +191,40 @@ body {
 
 .btn-voltar:hover {
     color: #8a946f;
+}
+
+/* CAMPOS DE TRATATIVA DE ERRO E LOADING DO CADASTRO IMPORTADO DO WEB-DATA-VIZ */
+
+.loading-div {
+  width: 50px;
+  display: none; 
+  margin: auto;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+.alerta_erro {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ED145B 3px solid;
+  padding: 10px;
+  margin-right: 10%;
+  z-index: 999;
+}
+
+.card_erro #mensagem_erro {
+  font-weight: 500;
+  font-size: 20px;
 }

@@ -3,90 +3,81 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Login</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login-cadastro.css">
+    <script src="js/sessao.js"></script>
 </head>
 
 <body>
 
-    <!--Header-->
+<div class="container-login">
 
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <!-- LADO ESQUERDO (IMAGEM) -->
+    <div class="esquerda-fundo"></div>
 
-
-    <div class="login">
+    <!-- LADO DIREITO (LOGIN) -->
+    <div class="direita-form">
+        
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
             </div>
         </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
-                </div>
 
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
+        <div class="caixa-login">
 
-                <div id="div_erros_login"></div>
-            </div>
+            <a href="index.html"><button class="btn-voltar">← Voltar</button></a>
+
+            <img src="assets/imgs/logo hygra.png" alt="Logo Hygra" class="logo-login">
+
+            <h1>Faça o seu login</h1>
+
+            <h4>Seu E-mail</h4>
+            <input type="email" id="ipt_email" placeholder="Insira seu email...">
+
+            <h4>Sua Senha</h4>
+            <input type="password" id="ipt_senha" placeholder="Insira sua senha...">
+
+            <button onclick="Login()">ENTRAR</button><br><br><br>
+
+            Não tem uma conta? <a href="cadastro.html">Crie a sua conta Hygra</a>
+
+            <div id="div_erros_login"></div>
+            
         </div>
     </div>
 
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
-        </div>
-    </div>
-    <!--footer fim-->
+</div>
+
+
 
 </body>
 
 </html>
-
 <script>
+    let tentativas = 0;
 
+    function Login() {
+        let email = ipt_email.value
+        let senha = ipt_senha.value
 
+        if (email == "admin@123" && senha == "12345") {
+            alert("Login realizado com sucesso!")
+            window.location.href = "../dashboard/dashboard.html";
+        } else {
+            tentativas = tentativas + 1;
+            if (tentativas < 3) {
+                alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
+            } else {
+                alert("Você tentou muitas vezes. Acesso bloqueado!")
+                ipt_email.disabled = true
+                ipt_senha.disabled = true
+            }
+        }
+    }
+
+    // script do login da web-data-viz
     function entrar() {
         aguardar();
 
@@ -127,7 +118,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
@@ -155,5 +145,4 @@
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
-
 </script>
