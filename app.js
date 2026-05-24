@@ -35,6 +35,70 @@ app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
+/* BOB IA*/
+
+// Rota para servir a página do BobIA
+app.use("/bobia", express.static(path.join(__dirname, "public/BobIA/public")));
+
+// importando os bibliotecas necessárias
+const { GoogleGenAI } = require("@google/genai");
+
+
+// configurando o servidor express
+const PORTA_SERVIDOR = process.env.PORTA_BOBIA;
+
+// configurando o gemini (IA)
+const chatIA = new GoogleGenAI({ apiKey: process.env.CHAVE_API_BOBIA });
+
+
+// configurando CORS
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
+    next();
+});
+
+// inicializando o servidor
+
+// rota para receber perguntas e gerar respostas
+app.post("/bobia/perguntar", async (req, res) => {
+    const pergunta = req.body.pergunta;
+
+    try {
+        const resultado = await gerarResposta(pergunta);
+        res.json({ resultado });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+
+});
+
+// função para gerar respostas usando o gemini
+async function gerarResposta(mensagem) {
+
+    try {
+        // gerando conteúdo com base na pergunta
+        const modeloIA = chatIA.models.generateContent({
+           // model: "gemini-2.5-flash",
+            model: "gemini-3-flash-preview",
+            contents: `Em um paragráfo responda: ${mensagem}`
+
+        });
+        const resposta = (await modeloIA).text;
+        const tokens = (await modeloIA).usageMetadata;
+
+        console.log(resposta);
+        console.log("Uso de Tokens:", tokens);
+
+        return resposta;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+// FIM DA BOB IA
+
 app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  

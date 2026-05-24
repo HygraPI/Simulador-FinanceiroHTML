@@ -4,7 +4,8 @@ package-lock.json
 
 .github
 
-# .env
-# .env.dev
+.env
+.env.dev
 
 antigo-cadastro.html
+.env.dev
