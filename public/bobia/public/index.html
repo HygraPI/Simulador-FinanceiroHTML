@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobIA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img class="img-header" src="../assets/imgs/logo-sem-fundo.png">
+            <h3 class="h3-header">Hygra</h3>
+        </div>
+        <h3 class="h3-header">Suporte ao N3</h3>
+    </header>
+
+    <div class="conteudo">
+        <!-- <div class="conteudo-esquerda">
+                <h3>Bem vindo ao</h3>
+                <h1>Bob<span class="bob-verde">IA</span></h1>
+                <p>Seu assistente inteligente para suporte ao N3 da Hygra</p>
+            </div> -->
+    
+            <div class="conteudo-esquerda">
+            <!-- Ícone principal no topo -->
+            <div class="main-icon-container">
+                <svg class="main-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="#5C664C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <path d="M8 10h.01"></path>
+                    <path d="M12 10h.01"></path>
+                    <path d="M16 10h.01"></path>
+                </svg>
+            </div>
+
+            <h3>Bem-vindo ao</h3>
+            <h1>Bob<span class="bob-verde">IA</span></h1>
+            <p class="subtitulo">Seu assistente inteligente para suporte N3 do projeto Hygra.</p>
+
+            <!-- Lista de cards de informações -->
+            <div class="info-list">
+                <div class="info-item">
+                    <div class="info-icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5C664C"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            <path d="M8 10h.01"></path>
+                            <path d="M12 10h.01"></path>
+                            <path d="M16 10h.01"></path>
+                        </svg>
+                    </div>
+                    <div class="info-content">
+                        <h4>Respostas rápidas e precisas</h4>
+                        <p>Informações confiáveis sempre que precisar.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5C664C"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 11l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="info-content">
+                        <h4>Suporte especializado</h4>
+                        <p>Auxílio dedicado ao suporte N3 do projeto.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#5C664C"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <div class="info-content">
+                        <h4>Sempre disponível</h4>
+                        <p>Conte com a BobIA a qualquer hora.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="conteudo-direita">
+                <img class="img-conteudo" src="../assets/imgs/bobia_logo.png">
+                <h2>Como posso te ajudar hoje?</h2>
+                <p>Faça uma pergunta abaixo e receba uma resposta gerado pelo BobIA.</p>
+                <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                <br><br>
+                <button onclick="gerarResposta()">Gerar Resposta</button>
+                <h3>Resposta da IA:</h3>
+                <div id="resposta"></div>
+            </div> 
+
+        
+
+    </div>
+
+    <script>
+
+        async function gerarResposta() {
+            const pergunta = document.getElementById('pergunta').value;
+
+            const response = await fetch('/bobia/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            resposta.style.display = 'block';
+            document.getElementById('resposta').innerText += data.resultado;
+        }
+
+    </script>
+
+</body>
+
+</html>
