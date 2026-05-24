@@ -215,7 +215,7 @@ conteudo */
 }
 
 /* Estilização da lista de informativos (balõezinhos) */
-.info-list {
+.info-lista {
     display: flex;
     flex-direction: column;
     gap: 25px;
