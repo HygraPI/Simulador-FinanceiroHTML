@@ -38,7 +38,7 @@ app.use("/empresas", empresasRouter);
 /* BOB IA*/
 
 // Rota para servir a página do BobIA
-app.use("/bobia", express.static(path.join(__dirname, "public/BobIA/public")));
+app.use("/bobia", express.static(path.join(__dirname, "public/bobia/public")));
 
 // importando os bibliotecas necessárias
 const { GoogleGenAI } = require("@google/genai");
