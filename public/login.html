@@ -7,6 +7,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/login-cadastro.css">
     <script src="js/sessao.js"></script>
+
 </head>
 
 <body>
@@ -39,7 +40,7 @@
             <h4>Sua Senha</h4>
             <input type="password" id="ipt_senha" placeholder="Insira sua senha...">
 
-            <button onclick="Login()">ENTRAR</button><br><br><br>
+            <button onclick="entrar()">ENTRAR</button><br><br><br>
 
             Não tem uma conta? <a href="cadastro.html">Crie a sua conta Hygra</a>
 
@@ -58,7 +59,7 @@
 <script>
     let tentativas = 0;
 
-    function Login() {
+    /*function Login() {
         let email = ipt_email.value
         let senha = ipt_senha.value
 
@@ -75,23 +76,17 @@
                 ipt_senha.disabled = true
             }
         }
-    }
+    }*/
 
     // script do login da web-data-viz
     function entrar() {
-        aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
+            alert("Complete todos os campos")
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -120,7 +115,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./site-pi-public/paginas/dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -131,7 +126,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+
                 });
             }
 
@@ -142,7 +137,4 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
 </script>
