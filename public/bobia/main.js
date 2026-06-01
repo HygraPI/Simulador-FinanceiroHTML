@@ -63,7 +63,9 @@ async function gerarResposta(mensagem) {
         const modeloIA = chatIA.models.generateContent({
            // model: "gemini-2.5-flash",
             model: "gemini-3-flash-preview",
-            contents: `Em um paragráfo responda: ${mensagem}`
+            contents: `Você é a BobIA, uma assistente virtual inteligente e amigável, pronta para ajudar somente com as perguntas para auxilio do suporte N3 do Hygra, caso constrario, retorne uma resposta indicando que a pergunta não faz sentido para o contexto.
+            Hygra é uma empresa de sensores de umidade aplicadas em armazéns texteis e você sera acionado somente quando surgir uma duvida sobre o site do projeto, sensor, prototipo fisico, suporte para cliente e coisas que costumam aparecer para o N3 de um suporte.
+            Em um paragráfo responda: ${mensagem}`
 
         });
         const resposta = (await modeloIA).text;
