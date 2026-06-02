@@ -13,7 +13,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
-    <link rel="stylesheet" href="/public/">
+    <link rel="stylesheet" href="/public/css/">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -21,19 +21,61 @@
 </head>
 
 <body onload="validarSessao(),  atualizacaoPeriodica()">
-    <header class="header">
-        <div class="header-left">
-            <img class="img-header" src="assets/imgs/logo-sem-fundo.png">
-            <h3 class="h3-header">Hygra</h3>
+
+    <div class="container-principal">
+        <header>
+            <div class="img-span">
+            <img src="/public/assets/imgs/logo-sem-fundo.png" alt="">
+            <span>Hygra</span>
+            </div>
+
+            <div class="btnVoltar">
+                <a href="/public/login.html">
+                    <button id="btnSair">Sair</button>
+                </a>
+            </div>
+        
+        </header>
+
+        <div class="BoasVindas">
+            <span id="mensagemBoasVindas">Bem vindo, usuário!</span>
         </div>
 
-        <a href="login.html"><button class="button-header">Entrar</button></a>
-    </header>
+        <div class="icones">
+
+            <a href="" class="CardIcon">
+                <span class="emoji">📊</span>
+                <span>Dashboard Geral</span>
+
+                <p>Confira uma Dashboard Geral de todos os
+                    sensores do sistema com
+                    métricas para análise.
+                </p>
+
+                <a href="">
+                    Ver Dashboard Geral
+                </a>
+            </a>
+    
+            <a href="" class="CardIcon">
+                <span class="emoji">⚙️</span>
+                <span>Sensor Específico</span>
+
+                <p>Confira os sensores do sistema e analise o seu status.</p>
+
+                <a href="">
+                    Ver Sensor específico
+                </a>
+            </a>
+        </div>
+
+    </div>
+
+
 
 </body>
 
 <script>
-
 
 
 </script>
