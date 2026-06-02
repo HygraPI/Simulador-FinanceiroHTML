@@ -11,6 +11,7 @@
 
 - Custo evitado (R$);
 
+
 ---
 
 ## 📈 Gráficos
@@ -20,3 +21,52 @@
 - Alertas por setor (Gráfico de barras);
 
 - Tempo fora da faixa ideal de umidade.
+
+
+## NOVAS MÉTRICAS
+
+- ATUAIS:
+
+- Umidade atual com o status;
+
+- Custo evitado;
+
+- Sensor em alerta;
+
+- Data do último alerta;
+
+
+
+- NOVAS (GERAL):
+
+KPI'S:
+
+- Umidade média (A porcentagem média dos sensores do setor);
+
+- Quantidade total sensores em alerta;
+
+
+GRÁFICOS:
+
+- Gráfico de barras: alertas por setor;
+
+- 
+
+
+- NOVAS (SENSORES):
+
+KPI'S:
+
+- Horário da última leitura;
+
+- Umidade atual;
+
+- Identificação do sensor;
+
+- último alerta no setor;
+
+GRÁFICOS:
+
+- Gráficos de linha: variação de umidade; 
+
+- Gráfico de barras: tempo fora da faixa ideal;
