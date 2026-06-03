@@ -13,20 +13,24 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
-    <link rel="stylesheet" href="/public/css/">
+    <link rel="stylesheet" href="/public/css/menu.css">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(),  atualizacaoPeriodica()">
+<body>
 
     <div class="container-principal">
         <header>
             <div class="img-span">
-            <img src="/public/assets/imgs/logo-sem-fundo.png" alt="">
-            <span>Hygra</span>
+                <img src="/public/assets/imgs/logo-sem-fundo.png" class="logo-header" alt="Logo Hygra">
+                <span id="labelNomeEmpresa">Hygra</span>
+            </div>
+
+            <div class="BoasVindas">
+                <span id="mensagemBoasVindas">Bem vindo, Usuário!</span>
             </div>
 
             <div class="btnVoltar">
@@ -34,49 +38,100 @@
                     <button id="btnSair">Sair</button>
                 </a>
             </div>
-        
         </header>
 
-        <div class="BoasVindas">
-            <span id="mensagemBoasVindas">Bem vindo, usuário!</span>
-        </div>
+        <div class="conteudo-principal">
+            <div class="titulo-descricao">
+                <span class="titulo">Sensores do Sistema</span>
+                <p class="descricao">
+                    Acesse todos os sensores do sistema e verifique uma dashboard para <br>
+                    analisar o status de cada sensor.</p>
+            </div>
 
-        <div class="icones">
+            <div class="container-KPI">
+                <p>Total de sensores em alerta:</p>
+                <p class="valor">2</p>
+            </div>
 
-            <a href="" class="CardIcon">
-                <span class="emoji">📊</span>
-                <span>Dashboard Geral</span>
-
-                <p>Confira uma Dashboard Geral de todos os
-                    sensores do sistema com
-                    métricas para análise.
-                </p>
-
-                <a href="">
-                    Ver Dashboard Geral
-                </a>
-            </a>
-    
-            <a href="" class="CardIcon">
-                <span class="emoji">⚙️</span>
-                <span>Sensor Específico</span>
-
-                <p>Confira os sensores do sistema e analise o seu status.</p>
-
-                <a href="">
-                    Ver Sensor específico
-                </a>
-            </a>
+            <div class="container-tabela-card">
+                <table class="tabela-sensores">
+                    <thead>
+                        <tr>
+                            <th>SENSOR</th>
+                            <th>LOCALIZAÇÃO</th>
+                            <th>ÚLTIMA LEITURA (Umidade)</th>
+                            <th>STATUS DE ALERTA</th>
+                            <th>MÉTRICAS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="conteudo-tabela">
+                        <tr>
+                            <td class="sensor">1-A</td>
+                            <td class="localizacao">Setor 1C</td>
+                            <td class="porcentagem">80%</td>
+                            <td class="status">Crítico</td>
+                            <td><a href="./dashboard.html">
+                                    <button id="Dashboard">Ver Dashboard</button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="sensor">1-b</td>
+                            <td class="localizacao">Setor 1B</td>
+                            <td class="porcentagem">57%</td>
+                            <td class="status">Ideal</td>
+                            <td><a href="./dashboard.html">
+                                    <button id="Dashboard">Ver Dashboard</button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="sensor">2-A</td>
+                            <td class="localizacao">Setor 1A</td>
+                            <td class="porcentagem">90%</td>
+                            <td class="status">Crítico</td>
+                            <td><a href="./dashboard.html">
+                                    <button id="Dashboard">Ver Dashboard</button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="sensor">2-A</td>
+                            <td class="localizacao">Setor 1A</td>
+                            <td class="porcentagem">55%</td>
+                            <td class="status">Ideal</td>
+                            <td><a href="./dashboard.html">
+                                    <button id="Dashboard">Ver Dashboard</button>
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
 
-
-
+     <footer class="footer">
+            <p>© 2026 Hygra. Todos os direitos reservados.</p>
+        </footer>
 </body>
 
 <script>
+    // DETERMINA A COR DEPENDENDO DO STATUS DO SENSOR
+    const celulasStatus = document.querySelectorAll('.status');
 
+    celulasStatus.forEach(element => {
+
+        let textStatus = element.textContent.trim();
+
+        if (textStatus === 'Crítico') {
+            element.style.color = 'red';
+        } else if (textStatus === 'Ideal') {
+            element.style.color = 'green';
+        }
+    });
 
 </script>
 

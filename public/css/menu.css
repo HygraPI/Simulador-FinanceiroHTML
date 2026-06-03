@@ -5,19 +5,218 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
 body {
-     background: linear-gradient(135deg, #f5f3ff 0%, #e9e5ff 100%);
+    background: #f4f4f4;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-header{
-    background-color: #A396E9;
+/*INÍCIO ESTILIZAÇÃO HEADER*/
+header {
+    background-color: #f4f4f4;
     padding: 15px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #2D1B6B;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid #e5e5e5;
+    position: relative;
 }
+
+.BoasVindas {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.img-span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-header {
+    width: 50px;
+    height: auto;
+}
+
+.img-span span {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0px;
+}
+
+#btnSair {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    background-color: #000000;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.9s;
+}
+#btnSair:hover {
+    transform: scale(1.03);
+}
+/*FIM ESTILIZAÇÃO HEADER*/
+
+/*INÍCIO ESTILIZAÇÃO DESCRIÇÃO*/
+.titulo-descricao {
+    letter-spacing: 0px;
+    color: #000;
+    margin-top: 35px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.descricao {
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.titulo {
+    letter-spacing: 0px;
+    color: #000;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+/*FIM ESTILIZAÇÃO DESCRIÇÃO*/
+
+/*INÍCIO ESTILIZAÇÃO TOTAL SENSORES EM ALERTA*/
+.container-KPI {
+    display: flex;
+    justify-content: row;
+    gap: 8px;
+    text-align: center;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-right: 1150px;
+    font-weight: 600;
+    background-color: #e7efda;
+    border-radius: 12px;
+    padding: 24px 16px;
+}
+
+.container-KPI p {
+    letter-spacing: 0px;
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+}
+/*FIM ESTILIZAÇÃO TOTAL SENSORES EM ALERTA*/
+
+/*INÍCIO ESTILIZAÇÃO TABELA SENSORES*/
+.container-tabela-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 8px 24px rgba(163, 150, 233, 0.05);
+    overflow-x: auto;
+    border: 1px solid #EBF0FF;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
+
+.tabela-sensores {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.tabela-sensores thead {
+    background-color: #e7efda;
+    top: 0;
+    position: sticky;
+    z-index: 1;
+}
+
+.tabela-sensores th {
+    padding: 18px 14px;
+    font-size: 1Spx;
+    font-weight: 600;
+    color: #070a00;
+}
+
+.tabela-sensores th:first-child {
+    border-radius: 12px 0 0 12px;
+}
+
+.tabela-sensores th:last-child {
+    border-radius: 0 12px 12px 0;
+}
+
+.tabela-sensores td {
+    padding: 20px 14px;
+    color: #4A4A4A;
+    font-size: 16px;
+    border-bottom: 1px solid #F3F2FD;
+    vertical-align: middle;
+}
+
+.tabela-sensores #Dashboard {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    background-color: transparent;
+    color: rgb(108, 123, 88);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tabela-sensores #Dashboard:hover {
+    transform: translateY(-2px);
+}
+.tabela-sensores tbody tr:nth-child(even) { /*Even = pares*/
+    background-color: #ffffff;
+    /* Cor cinza claro nas linhas pares */
+}
+
+.tabela-sensores tbody tr:nth-child(odd) { /*Odd = ímpares*/
+    background-color: #f4f4f4;
+    /* Cor branca nas linhas ímpares */
+}
+
+.status {
+    font-weight: 600;
+}
+
+.porcentagem {
+    font-weight: 600;
+}
+
+.localizacao {
+    font-weight: 600;
+}
+
+.sensor {
+    font-weight: 600;
+}
+/*FIM ESTILIZAÇÃO TABELA SENSORES*/
+
+/*INÍCIO ESTILIZAÇÃO FOOTER*/
+.footer {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   height: 50px;
+   background-color: #d7dbd2;
+   margin-top: auto;
+}
+/*FIM ESTILIZAÇÃO FOOTER*/
