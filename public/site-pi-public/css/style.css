@@ -360,48 +360,70 @@ body {
 
 .corpodashboard {
    font-family: 'Poppins', sans-serif;
+   overflow: hidden;
+   background-color: #F1F2F0;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
 }
 
 .grafico {
-   flex: 1;
-   background-color: white;
-   border-radius: 32px;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-   height: 230px;
+    background-color: white;
+    border-radius: 32px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    height: 300px;
+    margin-top: 30px;
+    margin-left: 30px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    min-height: 350px;
+    width: 750px; 
+    flex: none;
+    align-items: center;
+}
+
+.graficos {
    display: flex;
-   flex-direction: column;
-   gap: 1px;
-   padding-bottom: 30px;
-   padding-left: 20px;
-   padding-right: 20px;
-   padding-top: 5px;
+   flex-direction: row;
+   gap: 15px;
+   flex: 1;
 }
 
 .grafico canvas {
    width: 380px;
+   height: 200px;
    flex: 1;
 }
 
 .kpis {
    display: flex;
    justify-content: center;
-   gap: 100px;
+   gap: 30px;
    margin: 10px;
+   margin-top: 20px;
 }
 
 .kpi {
    display: flex;
+   flex-direction: column;
    background-color: white;
    padding: 10px;
    border-radius: 12px;
    box-shadow: 0 5px 8px rgb(126, 126, 126);
    transition: transform 0.2s ease, box-shadow 0.2s ease;
-   justify-content: space-around;
+   justify-content: center;
    align-items: center;
-   flex-wrap: wrap;
-   flex-direction: column;
-   width: 220px;
-   height: 140px;
+   text-align: center;
+   width: 240px;
+   height: 100px;
+}
+
+.kpi:hover {
+   transform: translateY(-6px);
+   border-color: #4a6a3d;
+   box-shadow: 0 0 20px rgba(6, 78, 29, 0.18);
 }
 
 .kpi_titulo {
@@ -415,10 +437,11 @@ body {
    margin-top: 5px;
    font-weight: 600;
    color: #2c3e50;
+   align-items: center;
 }
 
 .kpi_destaque {
-   border-left: 5px solid #2c7be5;
+   border-left: 5px solid #648a55;
 }
 
 .kpi_legenda {
@@ -430,6 +453,10 @@ body {
 .containerkpi {
    max-width: 2000px;
    margin: auto;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   margin-top: 30px;
 }
 
 .graficoslinha {
@@ -438,18 +465,30 @@ body {
    margin: 20px;
 }
 
-select {
-   margin: 20px;
-   padding: 8px;
-   border-radius: 8px;
-   border: 1px solid #ccc;
-   margin: 0;
-   width: fit-content;
-}
-
 .grafico_titulo {
    font-weight: 500;
    font-size: 20px;
+}
+
+.footer_dashboard {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+   width: 100%;
+   height: 60px;
+   background-color: #d7dbd2;
+   font-family: Poppins, sans-serif;
+}
+
+.BoasVindas {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* INICIO ESTILIZACAO DA SECAO IMPORTANCIA */

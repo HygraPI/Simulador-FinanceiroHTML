@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./dashboard.js"></script>
+    <title>Dashboard</title>
+</head>
+
+<body class="corpodashboard">
+
+    <header class="header">
+        <div class="header-left">
+            <img class="img-header" src="../../../assets/imgs/logo-sem-fundo.png">
+            <h3 class="h3-header">Hygra</h3>
+        </div>
+
+        <div class="BoasVindas">
+                <span id="mensagemBoasVindas">Bem vindo, Usuário!</span>
+        </div>
+
+        <a href="../../paginas/dashboard/menu.html"><button class="button-header">Voltar</button></a>
+
+    </header>
+
+    <div class="containerkpi">
+        <div class="kpis">
+            <div class="kpi_destaque kpi">
+                <p class="kpi_titulo">Identificação do sensor:</p>
+                <h2 class="kpi_valor">-</h2>
+            </div>
+            <div class="kpi kpi_destaque">
+                <p class="kpi_titulo"> Última leitura:</p>
+                <h2 class="kpi_valor">-</h2>
+            </div>
+            <div class="kpi kpi_destaque">
+                <p class="kpi_titulo"> Umidade atual:</p>
+                <h2 class="kpi_valor">0</h2>
+            </div>
+            <div class="kpi kpi_destaque">
+                <p class="kpi_titulo"> último alerta:</p>
+                <h2 class="kpi_valor">-</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="graficos">
+
+        <div class="grafico">
+            <div class="grafico_titulo">Variação de umidade</div>
+            <canvas id="sensorDigital"></canvas>
+        </div>
+
+        <div class="grafico">
+            <div class="grafico_titulo">Tempo fora da faixa ideal</div>
+            <canvas id="sensorDigital3"></canvas>
+        </div>
+
+    </div>
+
+    <footer class="footer_dashboard">
+            <p>© 2026 Hygra. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+
+        var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Umidade',
+                        borderColor: '#648A55',
+                        backgroundColor: 'rgba(78, 160, 54, 0.1)',
+                        fill: true
+                    },
+                    {
+                        label: 'Mínimo Ideal',
+                        borderColor: '#3b57a2',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                    },
+                    {
+                        label: 'Máximo Ideal',
+                        borderColor: '#c93c3c',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var sensorDigital3 = new Chart(document.getElementById('sensorDigital3').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['01/04/2026', '02/04/2026', '03/04/2026', '04/04/2026'],
+                datasets: [{
+                    label: 'Horas fora da faixa ideal de umidade',
+                    borderColor: '#648A55',
+                    backgroundColor: '#648A55',
+                    borderRadius: 20,
+                    data: [2, 1, 4, 5, 2]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(Horas)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        var paginacao = {};
+        var tempo = {};
+
+        let sensor_atual = '';
+
+        function limparGrafico(grafico) {
+            grafico.data.labels = [];
+
+            grafico.data.datasets[0].data = [];
+            grafico.data.datasets[1].data = [];
+            grafico.data.datasets[2].data = [];
+
+            grafico.update();
+
+            contagem = 0;
+        }
+
+        function trocar_sensor() {
+            let sensor_anterior = sensor_atual;
+            sensor_atual = (select_sensor.value);
+            if (sensor_atual != sensor_anterior) {
+                limparGrafico(sensorDigital);
+            }
+        }
+
+        setInterval(() => {
+            obterDadosMock(sensorDigital);
+        }, 1000);
+
+
+
+        let contagem = 0;
+
+        function obterDadosMock(grafico) {
+
+            if (sensor_atual == '0' || sensor_atual == '') {
+                return;
+            }
+
+            let valorMock = (Math.random() * 100).toFixed(0);
+            contagem = contagem + 1;
+
+            if (grafico.data.labels.length == 10) {
+                grafico.data.labels.shift()
+                grafico.data.datasets[0].data.shift()
+            }
+
+            grafico.data.labels.push(contagem);
+            grafico.data.datasets[0].data.push(valorMock);
+
+
+            grafico.data.datasets[1].data.push(45);
+            grafico.data.datasets[2].data.push(55);
+
+            grafico.update();
+        }
+
+    var nome = sessionStorage.NOME_USUARIO
+    mensagemBoasVindas.innerHTML = `Seja bem vindo, ${nome}!`
+
+
+
+    </script>
+</body>
+
+</html>
