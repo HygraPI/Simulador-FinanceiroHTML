@@ -19,7 +19,7 @@
         </div>
 
         <div class="BoasVindas">
-                <span id="mensagemBoasVindas">Bem vindo, Usuário!</span>
+            <span id="mensagemBoasVindas">Bem vindo, Usuário!</span>
         </div>
 
         <a href="../../paginas/dashboard/menu.html"><button class="button-header">Voltar</button></a>
@@ -30,19 +30,19 @@
         <div class="kpis">
             <div class="kpi_destaque kpi">
                 <p class="kpi_titulo">Identificação do sensor:</p>
-                <h2 class="kpi_valor">-</h2>
+                <h2 class="kpi_valor" id="kpiSensor">-</h2>
             </div>
             <div class="kpi kpi_destaque">
-                <p class="kpi_titulo"> Última leitura:</p>
-                <h2 class="kpi_valor">-</h2>
+                <p class="kpi_titulo"> Tipo de Tecido:</p>
+                <h2 class="kpi_valor" id="tipoTecido">-</h2>
             </div>
             <div class="kpi kpi_destaque">
                 <p class="kpi_titulo"> Umidade atual:</p>
-                <h2 class="kpi_valor">0</h2>
+                <h2 class="kpi_valor" id="umidadeAtual">0</h2>
             </div>
             <div class="kpi kpi_destaque">
-                <p class="kpi_titulo"> último alerta:</p>
-                <h2 class="kpi_valor">-</h2>
+                <p class="kpi_titulo"> Último alerta:</p>
+                <h2 class="kpi_valor" id="ultimoAlerta" style="font-size: 25px;">-</h2>
             </div>
         </div>
     </div>
@@ -63,10 +63,89 @@
     </div>
 
     <footer class="footer_dashboard">
-            <p>© 2026 Hygra. Todos os direitos reservados.</p>
+        <p>© 2026 Hygra. Todos os direitos reservados.</p>
     </footer>
 
     <script>
+        var nome = sessionStorage.NOME_USUARIO
+        mensagemBoasVindas.innerHTML = `Seja bem vindo, ${nome}!`
+
+        function carregarUltimaLeitura() {
+
+            fetch("/medidas/ultima-leitura/1")
+                .then(function (resposta) {
+
+                    return resposta.json();
+
+                }).then(function (dados) {
+
+                    console.log(dados);
+
+                    umidadeAtual.innerHTML = dados[0].umidade + '%';
+
+                });
+
+        }
+
+        function carregarSensor() {
+
+            fetch("/medidas/sensor/1")
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+                .then(function (dados) {
+
+                    console.log(dados);
+
+                    document.getElementById("kpiSensor").innerHTML =
+                        dados[0].idSensor;
+
+                });
+
+        }
+
+        function carregarUltimoAlerta() {
+
+            fetch("/medidas/ultimo-alerta/1")
+                .then(function (resposta) {
+
+                    return resposta.json();
+
+                }).then(function (dados) {
+
+                    var data = new Date(dados[0].dataAlerta);
+
+                    var dataFormatada =
+                        data.toLocaleDateString("pt-BR") + " " +
+                        data.toLocaleTimeString("pt-BR", {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+
+                    document.getElementById("ultimoAlerta").innerHTML =
+                        dataFormatada;
+
+                    console.log(dados);
+
+                });
+
+        }
+
+        function carregarTipoTecido() {
+
+            fetch("/medidas/tipo-tecido/1")
+                .then(function (resposta) {
+
+                    return resposta.json();
+
+                }).then(function (dados) {
+
+                    document.getElementById("tipoTecido").innerHTML =
+                        dados[0].nome;
+
+                });
+
+        }
 
         var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
             type: 'line',
@@ -75,42 +154,116 @@
                 datasets: [
                     {
                         label: 'Umidade',
+                        data: [],
                         borderColor: '#648A55',
                         backgroundColor: 'rgba(78, 160, 54, 0.1)',
                         fill: true
                     },
                     {
                         label: 'Mínimo Ideal',
+                        data: [],
                         borderColor: '#3b57a2',
                         borderDash: [5, 5],
-                        pointRadius: 0,
+                        pointRadius: 0
                     },
                     {
                         label: 'Máximo Ideal',
+                        data: [],
                         borderColor: '#c93c3c',
                         borderDash: [5, 5],
-                        pointRadius: 0,
+                        pointRadius: 0
                     }
                 ]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(%)'
-                        },
-                        beginAtZero: true
-                    }
-                }
+                maintainAspectRatio: false
             }
         });
+
+        function carregarGraficoUmidade() {
+
+            fetch("/medidas/grafico-umidade/1")
+                .then(function (resposta) {
+
+                    return resposta.json();
+
+                })
+                .then(function (dados) {
+
+                    console.log(dados);
+
+                    var labels = [];
+                    var valores = [];
+
+                    dados.reverse();
+
+                    for (var i = 0; i < dados.length; i++) {
+
+                        labels.push(dados[i].horario);
+                        valores.push(dados[i].umidade);
+
+                    }
+
+                    sensorDigital.data.labels = labels;
+
+                    sensorDigital.data.datasets[0].data = valores;
+
+                    sensorDigital.data.datasets[1].data =
+                        Array(valores.length).fill(dados[0].minUmidade);
+
+                    sensorDigital.data.datasets[2].data =
+                        Array(valores.length).fill(dados[0].maxUmidade);
+
+                    sensorDigital.update();
+
+                });
+
+        }
+        /*
+                var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [
+                            {
+                                label: 'Umidade',
+                                borderColor: '#648A55',
+                                backgroundColor: 'rgba(78, 160, 54, 0.1)',
+                                fill: true
+                            },
+                            {
+                                label: 'Mínimo Ideal',
+                                borderColor: '#3b57a2',
+                                borderDash: [5, 5],
+                                pointRadius: 0,
+                            },
+                            {
+                                label: 'Máximo Ideal',
+                                borderColor: '#c93c3c',
+                                borderDash: [5, 5],
+                                pointRadius: 0,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+        
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: '(%)'
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });*/
 
         var sensorDigital3 = new Chart(document.getElementById('sensorDigital3').getContext('2d'), {
             type: 'bar',
@@ -147,66 +300,13 @@
             }
         });
 
+        carregarUltimaLeitura();
+        carregarSensor();
+        carregarUltimoAlerta();
+        carregarTipoTecido();
+        carregarGraficoUmidade();
 
-        var paginacao = {};
-        var tempo = {};
-
-        let sensor_atual = '';
-
-        function limparGrafico(grafico) {
-            grafico.data.labels = [];
-
-            grafico.data.datasets[0].data = [];
-            grafico.data.datasets[1].data = [];
-            grafico.data.datasets[2].data = [];
-
-            grafico.update();
-
-            contagem = 0;
-        }
-
-        function trocar_sensor() {
-            let sensor_anterior = sensor_atual;
-            sensor_atual = (select_sensor.value);
-            if (sensor_atual != sensor_anterior) {
-                limparGrafico(sensorDigital);
-            }
-        }
-
-        setInterval(() => {
-            obterDadosMock(sensorDigital);
-        }, 1000);
-
-
-
-        let contagem = 0;
-
-        function obterDadosMock(grafico) {
-
-            if (sensor_atual == '0' || sensor_atual == '') {
-                return;
-            }
-
-            let valorMock = (Math.random() * 100).toFixed(0);
-            contagem = contagem + 1;
-
-            if (grafico.data.labels.length == 10) {
-                grafico.data.labels.shift()
-                grafico.data.datasets[0].data.shift()
-            }
-
-            grafico.data.labels.push(contagem);
-            grafico.data.datasets[0].data.push(valorMock);
-
-
-            grafico.data.datasets[1].data.push(45);
-            grafico.data.datasets[2].data.push(55);
-
-            grafico.update();
-        }
-
-    var nome = sessionStorage.NOME_USUARIO
-    mensagemBoasVindas.innerHTML = `Seja bem vindo, ${nome}!`
+        setInterval(carregarGraficoUmidade, 5000);
 
 
 
