@@ -378,9 +378,9 @@
         if (resposta.ok) {
             alert("Cadastro realizado! Entraremos em contato em breve.");
             ipt_nomeEmpresa.value = '';
-            ipt_emailEmpresa.value - '';
+            ipt_emailEmpresa.value = '';
+            slct_estado.value = '';
             ipt_cidade.value = '';
-            ipt_estado.value = '';
             ipt_cnpj.value = '';
         } else {
             resposta.json().then(json => alert(json.mensagem));
