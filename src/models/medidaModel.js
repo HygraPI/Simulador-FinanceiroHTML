@@ -29,7 +29,104 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarUltimaLeitura(idSensor) {
+
+    var instrucaoSql = `
+        SELECT 
+            umidade,
+            dtLeitura
+        FROM leitura
+        WHERE fkSensor = ${idSensor}
+        ORDER BY dtLeitura DESC
+        LIMIT 1;
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarSensor(idSensor){
+
+    var instrucaoSql = `
+        SELECT idSensor
+        FROM sensor
+        WHERE idSensor = ${idSensor};
+    `;
+
+    return database.executar(instrucaoSql);
+
+}
+
+function buscarUltimoAlerta(idSensor) {
+
+    var instrucaoSql = `
+        SELECT 
+            a.dataAlerta
+        FROM leitura l
+        JOIN alerta a
+            ON l.fkAlerta = a.idAlerta
+        WHERE l.fkSensor = ${idSensor}
+        ORDER BY a.dataAlerta DESC
+        LIMIT 1;
+    `;
+
+    console.log("Executando SQL:\n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarTipoTecido(idSensor) {
+
+    var instrucaoSql = `
+        SELECT t.nome
+        FROM sensor s
+        JOIN lugar l
+            ON s.fkLugar = l.idLugar
+        JOIN tecido t
+            ON l.fkTecido = t.idTecido
+        WHERE s.idSensor = ${idSensor};
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarGraficoUmidade(idSensor) {
+
+    var instrucaoSql = `
+
+        SELECT
+            leitura.umidade,
+            DATE_FORMAT(leitura.dtLeitura, '%H:%i:%s') AS horario,
+            tecido.minUmidade,
+            tecido.maxUmidade
+        FROM leitura
+        JOIN sensor
+            ON leitura.fkSensor = sensor.idSensor
+        JOIN lugar
+            ON sensor.fkLugar = lugar.idLugar
+        JOIN tecido
+            ON lugar.fkTecido = tecido.idTecido
+        WHERE sensor.idSensor = ${idSensor}
+        ORDER BY leitura.dtLeitura DESC
+        LIMIT 7;
+
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+
+}
+
 module.exports = {
+    buscarUltimaLeitura,
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarSensor,
+    buscarUltimoAlerta,
+    buscarTipoTecido,
+    buscarGraficoUmidade
 }
