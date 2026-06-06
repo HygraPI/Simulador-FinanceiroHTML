@@ -214,7 +214,6 @@
     if (nomeVar == "" || emailVar == "" || senhaVar == "" || cpfVar == "" || confirmacaoSenhaVar == "" || codigoVar == "") {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Preencha todos os campos para realizar o cadastro";
-      return false;
       finalizarAguardar();
       setTimeout(() => {
         cardErro.style.display = "none"
