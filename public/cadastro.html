@@ -13,9 +13,9 @@
 
 <body onload="listar(); esconder()">
   <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
   </div>
 
   <div class="container-cadastro">
@@ -39,16 +39,17 @@
 
           <h4>CPF:</h4> <br>
           <input type="number" id="ipt_cpf" placeholder="Insira seu cpf"> <br><br>
-          
+
           <h4>Crie uma senha:</h4> <br>
-          <input id="ipt_senha" type="password" placeholder="Insira sua senha" oninput="validarSenha()" onfocus="mostrar()" onblur="esconder()">
-              <br>
-              <p id="senhaEspec"><span id="carac8">· 8 caracteres</span> <br>
-              <span id="maiusc">· letra maiúscula</span> <br>
-              <span id="minusc">· letra minúscula</span> <br>
-              <span id="numeroSenha">· número</span> <br>
-              <span id="caracEspec">· caractere especial(%, $, !...)</span> <br>
-              </p> <br><br>
+          <input id="ipt_senha" type="password" placeholder="Insira sua senha" oninput="validarSenha()"
+            onfocus="mostrar()" onblur="esconder()">
+          <br>
+          <p id="senhaEspec"><span id="carac8">· 8 caracteres</span> <br>
+            <span id="maiusc">· letra maiúscula</span> <br>
+            <span id="minusc">· letra minúscula</span> <br>
+            <span id="numeroSenha">· número</span> <br>
+            <span id="caracEspec">· caractere especial(%, $, !...)</span> <br>
+          </p> <br><br>
         </div>
 
         <div class="campo">
@@ -207,7 +208,7 @@
           break
         }
       }
-      
+
     }
 
     // Verificando se há algum campo em branco
@@ -219,7 +220,7 @@
         cardErro.style.display = "none"
       }, 4000)
       return false;
-    } 
+    }
 
     if (nomeVar.length < 3) {
       cardErro.style.display = "block";
@@ -324,17 +325,21 @@
       setInterval(sumirMensagem, 5000);
     }
     // Verificando se o código de ativação é de alguma empresa cadastrada
+    let codigoValido = false;
+
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
-        console.log("Código de ativação válido.");
+        idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
+        codigoValido = true;
         break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Código de ativação inválido";
-        setInterval(sumirMensagem, 3000);
-        return false
       }
+    }
+
+    if (!codigoValido) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Código de ativação inválido";
+      setTimeout(() => { cardErro.style.display = "none" }, 4000);
+      return false;
     }
 
     // Enviando o valor da nova input
