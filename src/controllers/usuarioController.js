@@ -24,7 +24,8 @@ function autenticar(req, res) {
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nomeFuncionario,
                             senha: resultadoAutenticar[0].senha,
-                            tipo: resultadoAutenticar[0].tipo
+                            tipo: resultadoAutenticar[0].tipo,
+                            empresaId: resultadoAutenticar[0].empresaId
                         });
 
                         

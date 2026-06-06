@@ -1,7 +1,8 @@
 var sensorModel = require("../models/sensoreModel");
 
 function listarSensores(req, res){
-    sensorModel.listarSensores().then((resultado) => {
+    let idEmpresa = req.body.idEmpresaServer;
+    sensorModel.listarSensores(idEmpresa).then((resultado) => {
         res.json(resultado);
     });
 }

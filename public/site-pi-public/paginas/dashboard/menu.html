@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hygra | Menu Inicial</title>
 
-    <script src="../../../js/sessao.js"></script>
-    <script src="../../../js/alerta.js"></script>
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     <link rel="stylesheet" href="../../css/menu.css">
@@ -34,7 +31,7 @@
 
             <div class="btnVoltar">
                 <a href="/login.html">
-                    <button id="btnSair">Sair</button>
+                    <button id="btnSair" onclick="sessionStorage.clear()">Sair</button>
                 </a>
             </div>
         </header>
@@ -49,7 +46,7 @@
 
             <div class="container-KPI">
                 <p>Total de sensores em alerta:</p>
-                <p class="valor">2</p>
+                <p class="valor" id="qtd_sensores_em_alerta">2</p>
             </div>
 
             <div class="container-tabela-card">
@@ -57,7 +54,7 @@
                     <thead>
                         <tr>
                             <th>SENSOR</th>
-                            <th>LOCALIZAÇÃO</th>
+                            <th>SETOR</th>
                             <th>ÚLTIMA LEITURA (Umidade)</th>
                             <th>STATUS DE ALERTA</th>
                             <th>MÉTRICAS</th>
@@ -99,7 +96,7 @@
                             <td class="localizacao">Setor 1A</td>
                             <td class="porcentagem">55%</td>
                             <td class="status">Ideal</td>
-                            <td><a href="./dashboard1.html">
+                            <td><a href="dashboard1.html">
                                     <button id="Dashboard">Ver Dashboard</button>
                                 </a>
                             </td>
@@ -118,6 +115,8 @@
 </body>
 
 <script>
+
+    console.log(sessionStorage.ID_EMPRESA)
 
     let listaSensores = []
 
@@ -139,10 +138,13 @@
 
     function listarSensores() {
         fetch("/sensores/listarSensores", {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
+            body: JSON.stringify({
+                idEmpresaServer: sessionStorage.ID_EMPRESA
+            })  
         })
             .then(function (resposta) {
                 if (resposta.ok) {
@@ -160,15 +162,16 @@
     }
 
     function exibirSensores() {
+        let qtdSensoresEmAlerta = 0;
         setTimeout(() => {
             console.log(listaSensores)
             conteudo_tabela.innerHTML = ''
             for (let i = 0; i <= listaSensores.length - 1; i++) {
-                conteudo_tabela.innerHTML = `
+                conteudo_tabela.innerHTML += `
                 <tr>
                     <td class="sensor">${listaSensores[i].idSensor}</td>
-                    <td class="localizacao">${listaSensores[i].localizacao}</td>
-                    <td class="porcentagem">${listaSensores[i].ultimaLeitura}%</td>
+                    <td class="localizacao">${listaSensores[i].idSetor}</td>
+                    <td class="porcentagem">${listaSensores[i].leitura}%</td>
                     <td class="status">${listaSensores[i].StatusDeAlerta}</td>
                     <td><a href="./dashboard1.html">
                             <button id="Dashboard">Ver Dashboard</button>
@@ -176,7 +179,11 @@
                     </td>
                 </tr>
             `
+            if(listaSensores[i].StatusDeAlerta != 'umidade ideal'){
+                qtdSensoresEmAlerta++
             }
+            }
+            qtd_sensores_em_alerta.innerHTML = qtdSensoresEmAlerta;
         }, 100)
     }
 

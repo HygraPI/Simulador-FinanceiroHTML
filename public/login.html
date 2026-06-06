@@ -57,26 +57,8 @@
 
 </html>
 <script>
+    console.log(sessionStorage.ID_USUARIO)
     let tentativas = 0;
-
-    /*function Login() {
-        let email = ipt_email.value
-        let senha = ipt_senha.value
-
-        if (email == "admin@123" && senha == "12345") {
-            alert("Login realizado com sucesso!")
-            window.location.href = "../dashboard/dashboard.html";
-        } else {
-            tentativas = tentativas + 1;
-            if (tentativas < 3) {
-                alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
-            } else {
-                alert("Você tentou muitas vezes. Acesso bloqueado!")
-                ipt_email.disabled = true
-                ipt_senha.disabled = true
-            }
-        }
-    }*/
 
     // script do login da web-data-viz
     function entrar() {
@@ -114,6 +96,8 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.TIPO_USUARIO = json.tipo;
+                    sessionStorage.ID_EMPRESA = json.empresaId;
+
 
 
                     if (sessionStorage.TIPO_USUARIO == 'suporte') {

@@ -98,14 +98,12 @@ header {
     justify-content: row;
     gap: 8px;
     text-align: center;
-    margin-left: 40px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-right: 1250px;
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
     font-weight: 600;
     background-color: #e7efda;
     border-radius: 12px;
-    padding: 24px 16px;
 }
 
 .container-KPI p {

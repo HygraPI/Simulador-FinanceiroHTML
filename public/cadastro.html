@@ -2,106 +2,87 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="css/login-cadastro.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico" />
-    <script src="./js/sessao.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="css/login-cadastro.css">
+  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <script src="./js/sessao.js"></script>
 
 </head>
 
 <body onload="listar()">
 
-    <div class="container-cadastro">
+  <div class="container-cadastro">
 
-        <div class="canto_esquerdo"></div>
-
-
-        <div id="cadastro" class="Caixa-Cadastro">
-            <div class="alerta_erro">
-                <div class="card_erro" id="cardErro">
-                    <span id="mensagem_erro"></span>
-                </div>
-            </div>
-
-            <a href="index.html"><button class="btn-voltar">← Voltar</button></a>
-
-            <div class="inicial">
-                <img src="assets/imgs/logo hygra.png">
-                <h1>Faça o seu cadastro:</h1>
-            </div>
-
-            <div class="campos">
-
-                <div class="campo">
-                    <h4>Nome completo:</h4> <br>
-                    <input id="ipt_nomeFuncionario" type="text" placeholder="Insira seu Nome "><br><br>
-
-                    <h4>Email:</h4> <br>
-                    <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
-
-                    <h4>CPF:</h4> <br>
-                    <input id="ipt_cpf" placeholder="Insira seu cpf"> <br><br>
-
-                </div>
-
-                <div class="campo">
-                    <h4>Crie uma senha:</h4> <br>
-                    <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br><br>
-
-                    <h4>Confirme sua senha:</h4> <br>
-                    <input id="ipt_confirmarSenha" type="password" placeholder="Insira a senha novamente">
-                    <br><br>
-
-                    <h4>Código de ativação:</h4> <br>
-                    <input id="codigo_input" type="text" placeholder="Insira o código de ativação">
-                    <br><br>
-                </div>
-            </div>
-            <button onclick="cadastrar()">FINALIZAR CADASTRO</button>
-            </div>
-            <div id="msg"></div>
-            <div id="div_aguardar" class="loading-div">
-                <img src="./assets/circle-loading.gif" id="loading-gif" />
-            </div>
-
-            <div id="div_erros_login"></div>
-
-        <!-- </div> -->
+    <div class="canto_esquerdo"></div>
 
 
-        <div class="canto_direito"></div>
+    <div id="cadastro" class="Caixa-Cadastro">
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
 
+      <a href="index.html"><button class="btn-voltar">← Voltar</button></a>
+
+      <div class="inicial">
+        <img src="assets/imgs/logo hygra.png">
+        <h1>Faça o seu cadastro:</h1>
+      </div>
+
+      <div class="campos">
+
+        <div class="campo">
+          <h4>Nome completo:</h4> <br>
+          <input id="ipt_nomeFuncionario" type="text" placeholder="Insira seu Nome "><br><br>
+
+          <h4>Email:</h4> <br>
+          <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
+
+          <h4>CPF:</h4> <br>
+          <input id="ipt_cpf" placeholder="Insira seu cpf"> <br><br>
+
+        </div>
+
+        <div class="campo">
+          <h4>Crie uma senha:</h4> <br>
+          <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br><br>
+
+          <h4>Confirme sua senha:</h4> <br>
+          <input id="ipt_confirmarSenha" type="password" placeholder="Insira a senha novamente">
+          <br><br>
+
+          <h4>Código de ativação:</h4> <br>
+          <input id="codigo_input" type="text" placeholder="Insira o código de ativação">
+          <br><br>
+        </div>
+      </div>
+      <button onclick="cadastrar()">FINALIZAR CADASTRO</button>
     </div>
+    <div id="msg"></div>
+    <div id="div_aguardar" class="loading-div">
+      <img src="./assets/circle-loading.gif" id="loading-gif" />
+    </div>
+
+    <div id="div_erros_login"></div>
+
+    <!-- </div> -->
+
+
+    <div class="canto_direito"></div>
+
+  </div>
 </body>
 
 </html>
 <script>
-    let tentativas = 0;
+  let tentativas = 0;
 
-    /*function Cadastro() {
-        let email = ipt_email.value
-        let senha = ipt_senha.value
 
-        if (email == "admin@123" && senha == "12345") {
-            alert("Login realizado com sucesso!")
-        } else {
-            tentativas = tentativas + 1;
-            if (tentativas < 3) {
-                alert("E-mail ou senha incorretos! Tentativa " + tentativas + " de 3")
-                return false
-            } else {
-                alert("Você tentou muitas vezes. Acesso bloqueado!")
-                ipt_email.disabled = true
-                ipt_senha.disabled = true
-            }
-        }
-    } */
 
-    // script de cadastro da web-data-viz
-
-     // Array para armazenar empresas cadastradas para validação de código de ativação 
+  // script de cadastro da web
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
@@ -118,19 +99,10 @@
     var idEmpresaVincular
 
     // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      cpfVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || cpfVar == "" || confirmacaoSenhaVar == "" || codigoVar == "") {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+      mensagem_erro.innerHTML = "Há algum campo em branco";
+      setInterval(sumirMensagem, 3000);
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -144,8 +116,9 @@
         break;
       } else {
         cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+        mensagem_erro.innerHTML = "Código de ativação inválido";
+        setInterval(sumirMensagem, 3000);
+        return false
       }
     }
 
