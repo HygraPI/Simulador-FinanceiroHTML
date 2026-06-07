@@ -50,7 +50,7 @@ const { GoogleGenAI } = require("@google/genai");
 const PORTA_SERVIDOR = process.env.PORTA_BOBIA;
 
 // configurando o gemini (IA)
-const chatIA = new GoogleGenAI({ apiKey: process.env.CHAVE_API_BOBIA });
+const chatIA = new GoogleGenAI({ apiKey: process.env.CHAVE_BOBIA });
 
 
 // configurando CORS
