@@ -19,7 +19,7 @@
         </div>
 
         <div class="BoasVindas">
-            <span id="mensagemBoasVindas">Bem vindo, Usuário!</span>
+            <span id="mensagemBoasVindas"></span>
         </div>
 
         <a href="../../paginas/dashboard/menu.html"><button class="button-header">Voltar</button></a>
@@ -67,12 +67,12 @@
     </footer>
 
     <script>
-        var nome = sessionStorage.NOME_USUARIO
-        mensagemBoasVindas.innerHTML = `Seja bem vindo, ${nome}!`
+        let idSensor = sessionStorage.ID_SENSOR;
+        console.log(idSensor);
 
         function carregarUltimaLeitura() {
 
-            fetch("/medidas/ultima-leitura/1")
+            fetch(`/medidas/ultima-leitura/${idSensor}`)
                 .then(function (resposta) {
 
                     return resposta.json();
@@ -89,7 +89,7 @@
 
         function carregarSensor() {
 
-            fetch("/medidas/sensor/1")
+            fetch(`/medidas/sensor/${idSensor}`)
                 .then(function (resposta) {
                     return resposta.json();
                 })
@@ -106,7 +106,7 @@
 
         function carregarUltimoAlerta() {
 
-            fetch("/medidas/ultimo-alerta/1")
+            fetch(`/medidas/ultimo-alerta/${idSensor}`)
                 .then(function (resposta) {
 
                     return resposta.json();
@@ -133,7 +133,7 @@
 
         function carregarTipoTecido() {
 
-            fetch("/medidas/tipo-tecido/1")
+            fetch(`/medidas/tipo-tecido/${idSensor}`)
                 .then(function (resposta) {
 
                     return resposta.json();
@@ -183,7 +183,7 @@
 
         function carregarGraficoUmidade() {
 
-            fetch("/medidas/grafico-umidade/1")
+            fetch(`/medidas/grafico-umidade/${idSensor}`)
                 .then(function (resposta) {
 
                     return resposta.json();
@@ -306,7 +306,7 @@
         carregarTipoTecido();
         carregarGraficoUmidade();
 
-        setInterval(carregarGraficoUmidade, 5000);
+        // setInterval(carregarGraficoUmidade, 5000);
 
 
 

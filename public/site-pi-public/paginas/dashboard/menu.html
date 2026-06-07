@@ -55,6 +55,7 @@
                         <tr>
                             <th>SENSOR</th>
                             <th>SETOR</th>
+                            <th>TECIDO</th>
                             <th>ÚLTIMA LEITURA (Umidade)</th>
                             <th>STATUS DE ALERTA</th>
                             <th>MÉTRICAS</th>
@@ -64,6 +65,7 @@
                         <tr>
                             <td class="sensor">1-A</td>
                             <td class="localizacao">Setor 1C</td>
+                            <td class="tecido">algodao</td>
                             <td class="porcentagem">80%</td>
                             <td class="status">Crítico</td>
                             <td><a href="./dashboard1.html">
@@ -171,10 +173,11 @@
                 <tr>
                     <td class="sensor">${listaSensores[i].idSensor}</td>
                     <td class="localizacao">${listaSensores[i].idSetor}</td>
+                    <td class="tecido">${listaSensores[i].tecido}</td>
                     <td class="porcentagem">${listaSensores[i].leitura}%</td>
                     <td class="status">${listaSensores[i].StatusDeAlerta}</td>
                     <td><a href="./dashboard1.html">
-                            <button id="Dashboard">Ver Dashboard</button>
+                            <button id="Dashboard" onclick="sessionStorage.ID_SENSOR = ${listaSensores[i].idSensor}">Ver Dashboard</button>
                         </a>
                     </td>
                 </tr>
