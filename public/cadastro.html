@@ -11,7 +11,12 @@
 
 </head>
 
-<body onload="listar()">
+<body onload="listar(); esconder()">
+  <div class="alerta_erro">
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+  </div>
 
   <div class="container-cadastro">
 
@@ -19,12 +24,6 @@
 
 
     <div id="cadastro" class="Caixa-Cadastro">
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
-      </div>
-
       <a href="index.html"><button class="btn-voltar">← Voltar</button></a>
 
       <div class="inicial">
@@ -38,25 +37,33 @@
           <h4>Nome completo:</h4> <br>
           <input id="ipt_nomeFuncionario" type="text" placeholder="Insira seu Nome "><br><br>
 
-          <h4>Email:</h4> <br>
-          <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
-
           <h4>CPF:</h4> <br>
-          <input id="ipt_cpf" placeholder="Insira seu cpf"> <br><br>
+          <input type="number" id="ipt_cpf" placeholder="Insira seu cpf"> <br><br>
 
+          <h4>Crie uma senha:</h4> <br>
+          <input id="ipt_senha" type="password" placeholder="Insira sua senha" oninput="validarSenha()"
+            onfocus="mostrar()" onblur="esconder()">
+          <br>
+          <p id="senhaEspec"><span id="carac8">· 8 caracteres</span> <br>
+            <span id="maiusc">· letra maiúscula</span> <br>
+            <span id="minusc">· letra minúscula</span> <br>
+            <span id="numeroSenha">· número</span> <br>
+            <span id="caracEspec">· caractere especial(%, $, !...)</span> <br>
+          </p> <br><br>
         </div>
 
         <div class="campo">
-          <h4>Crie uma senha:</h4> <br>
-          <input id="ipt_senha" type="password" placeholder="Insira sua senha"> <br><br>
+          <h4>Email:</h4> <br>
+          <input id="ipt_email" type="text" placeholder="Insira seu email"> <br><br>
+
+          <h4>Código de ativação:</h4> <br>
+          <input id="codigo_input" type="text" placeholder="Insira o código de ativação">
+          <br><br>
 
           <h4>Confirme sua senha:</h4> <br>
           <input id="ipt_confirmarSenha" type="password" placeholder="Insira a senha novamente">
           <br><br>
 
-          <h4>Código de ativação:</h4> <br>
-          <input id="codigo_input" type="text" placeholder="Insira o código de ativação">
-          <br><br>
         </div>
       </div>
       <button onclick="cadastrar()">FINALIZAR CADASTRO</button>
@@ -80,46 +87,259 @@
 <script>
   let tentativas = 0;
 
+  function mostrar() {
+    senhaEspec.style.display = "block"
+  }
 
+  function esconder() {
+    senhaEspec.style.display = "none"
+  }
 
   // script de cadastro da web
   let listaEmpresasCadastradas = [];
+
+  function validarSenha() {
+    var senhaVar = ipt_senha.value.trim();
+    let i = 0;
+    let temMaiusculo = false
+    let temMinusculo = false
+    let temEspecial = false
+    let temNumero = false
+    let vt_caractereEspec = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '-', '_', '/', '?', '"', '+', '|', '=', ',', '.', ':', ';', '<', '>', '[', ']', '^', '{', '}', '~', '`', '£', '¢', 'ç']
+    let vt_num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+    while (i < senhaVar.length) {
+      if (senhaVar[i] == (senhaVar[i]).toLowerCase()) {
+        temMinusculo = true
+      }
+      if (senhaVar[i] == (senhaVar[i]).toUpperCase()) {
+        temMaiusculo = true
+      }
+      for (let index = 0; index < vt_caractereEspec.length; index++) {
+        if (senhaVar[i] == vt_caractereEspec[index]) {
+          temEspecial = true
+          break
+        }
+      }
+      for (let index = 0; index < vt_num.length; index++) {
+        if (senhaVar[i] == vt_num[index]) {
+          temNumero = true
+          break
+        }
+      }
+      i++
+    }
+
+    if (temEspecial) {
+      caracEspec.style.color = "rgb(0, 140, 0)"
+    }
+    if (temMaiusculo) {
+      maiusc.style.color = "rgb(0, 140, 0)"
+    }
+    if (temMinusculo) {
+      minusc.style.color = "rgb(0, 140, 0)"
+    }
+    if (temNumero) {
+      numeroSenha.style.color = "rgb(0, 140, 0)"
+    }
+    if (senhaVar.length >= 8) {
+      carac8.style.color = "rgb(0, 140, 0)"
+    }
+
+    if (!temEspecial) {
+      caracEspec.style.color = "rgb(0, 0, 0)"
+    }
+    if (!temMaiusculo) {
+      maiusc.style.color = "rgb(0, 0, 0)"
+    }
+    if (!temMinusculo) {
+      minusc.style.color = "rgb(0, 0, 0)"
+    }
+    if (!temNumero) {
+      numeroSenha.style.color = "rgb(0, 0, 0)"
+    }
+    if (senhaVar.length < 8) {
+      carac8.style.color = "rgb(0, 0, 0)"
+    }
+  }
 
   function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = ipt_nomeFuncionario.value;
-    var emailVar = ipt_email.value;
-    var senhaVar = ipt_senha.value;
-    var cpfVar = ipt_cpf.value;
-    var confirmacaoSenhaVar = ipt_confirmarSenha.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var nomeVar = ipt_nomeFuncionario.value.trim();
+    var emailVar = ipt_email.value.trim();
+    var senhaVar = ipt_senha.value.trim();
+    var cpfVar = ipt_cpf.value.trim();
+    var confirmacaoSenhaVar = ipt_confirmarSenha.value.trim();
+    var codigoVar = codigo_input.value.trim();
+    var idEmpresaVincular;
+    let temArroba = false;
+    let temMaiusculo = false;
+    let temMinusculo = false;
+    let temEspecial = false;
+    let temNumero = false;
+    let vt_caractereEspec = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '-', '_', '/', '?', '"', '+', '|', '=', ',', '.', ':', ';', '<', '>', '[', ']', '^', '{', '}', '~', '`', '£', '¢', 'ç'];
+    let vt_num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    for (let i = 0; i < emailVar.length; i++) {
+      if (emailVar[i] == '@') {
+        temArroba = true
+      }
+    }
+
+    for (let i = 0; i < senhaVar.length; i++) {
+      if (senhaVar[i] == (senhaVar[i]).toLowerCase()) {
+        temMinusculo = true
+      }
+      if (senhaVar[i] == (senhaVar[i]).toUpperCase()) {
+        temMaiusculo = true
+      }
+      for (let index = 0; index < vt_caractereEspec.length; index++) {
+        if (senhaVar[i] == vt_caractereEspec[index]) {
+          temEspecial = true
+          break
+        }
+      }
+      for (let index = 0; index < vt_num.length; index++) {
+        if (senhaVar[i] == vt_num[index]) {
+          temNumero = true
+          break
+        }
+      }
+
+    }
 
     // Verificando se há algum campo em branco
     if (nomeVar == "" || emailVar == "" || senhaVar == "" || cpfVar == "" || confirmacaoSenhaVar == "" || codigoVar == "") {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Há algum campo em branco";
-      setInterval(sumirMensagem, 3000);
+      mensagem_erro.innerHTML = "Preencha todos os campos para realizar o cadastro";
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+
+    if (nomeVar.length < 3) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Nome curto demais, insira um nome com pelo menos 3 caracteres";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+
+    if (!temArroba) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "E-mail inválido, todo e-mail tem um @";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (emailVar.length < 8) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "E-mail inválido, o e-mail é muito curto";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (cpfVar.length != 11) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "CPF inválido, insira o cpf sem os pontos e sem o hífen. Exemplo (11122233344)";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (!temMaiusculo) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Senha inválida, é necessário que tenha ao menos uma letra maiúscula";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (!temMinusculo) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Senha inválida, é necessário que tenha ao menos uma letra minúscula";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (!temEspecial) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Senha inválida, é necessário que tenha ao menos um caractere especial";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (senhaVar.length < 8) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Senha inválida, é necessário conter ao menos 8 caracteres";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
+      return false;
+    }
+    if (senhaVar != confirmacaoSenhaVar) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "As senhas não coincidem, tente novamente";
+
+      finalizarAguardar();
+      setTimeout(() => {
+        cardErro.style.display = "none"
+      }, 4000)
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
     }
-
     // Verificando se o código de ativação é de alguma empresa cadastrada
+    let codigoValido = false;
+
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
-        console.log("Código de ativação válido.");
+        idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
+        codigoValido = true;
         break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Código de ativação inválido";
-        setInterval(sumirMensagem, 3000);
-        return false
       }
+    }
+
+    if (!codigoValido) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Código de ativação inválido";
+      setTimeout(() => { cardErro.style.display = "none" }, 4000);
+      return false;
     }
 
     // Enviando o valor da nova input

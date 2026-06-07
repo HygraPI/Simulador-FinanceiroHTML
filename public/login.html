@@ -106,7 +106,7 @@
                     }, 1000); // apenas para exibir o loading 
                     } else {
                         setTimeout(function () {
-                            window.location = "./site-pi-public/paginas/dashboard/dashboard1.html";
+                            window.location = "./site-pi-public/paginas/dashboard/menu.html";
                         }, 1000); // apenas para exibir o loading
                     }
 
@@ -114,11 +114,12 @@
                 });
 
             } else {
-
+                
                 console.log("Houve um erro ao tentar realizar o login.");
 
                 resposta.text().then(texto => {
                     console.error(texto);
+                    alert("Email ou senha inválidos. Tente novamente")
 
                 });
             }

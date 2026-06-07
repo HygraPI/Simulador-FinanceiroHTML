@@ -191,22 +191,27 @@
             <div class="contato-form">
                 <div class="campo-grupo">
                     <label>Nome da empresa</label>
-                    <input type="text" placeholder="Nome da Empresa">
+                    <input id="ipt_nomeEmpresa" type="text" placeholder="Nome da Empresa">
                 </div>
 
                 <div class="campo-grupo">
                     <label>Email de Contato</label>
-                    <input type="email" placeholder="E-mail de contato da empresa">
+                    <input id="ipt_emailEmpresa" type="email" placeholder="E-mail de contato da empresa">
+                </div>
+
+                <div class="campo-grupo">
+                    <label>CNPJ</label>
+                    <input id="ipt_cnpj" type="text" placeholder="CNPJ da empresa">
                 </div>
 
                 <div class="campo-linha">
                     <div class="campo-grupo">
                         <label>Cidade</label>
-                        <input type="text" placeholder="Cidade onde a empresa atua">
+                        <input id="ipt_cidade" type="text" placeholder="Cidade onde a empresa atua">
                     </div>
                     <div class="campo-grupo">
                         <label>Estado</label>
-                        <select>
+                        <select id="slct_estado">
                             <option value="">Selecione seu estado</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -239,7 +244,7 @@
                     </div>
                 </div>
 
-                <button class="btn-enviar">Enviar mensagem</button>
+                <button class="btn-enviar" onclick="enviarContato()">Enviar dados</button>
             </div>
         </div>
     </div>
@@ -346,4 +351,43 @@
     https://www.maximustecidos.com.br/tecido-linho-puro-preto-100--linho-957/p
     https://www.palhadesedatecidos.com.br/index.php?route=product/category&path=383_782
     */
+
+
+   /*CADASTRO EMPRESA*/
+
+   function enviarContato() {
+    var nomeEmpresa = ipt_nomeEmpresa.value
+    var emailEmpresa = ipt_emailEmpresa.value;
+    var cidade = ipt_cidade.value;
+    var estado = slct_estado.value;
+    var cnpj = ipt_cnpj.value;
+
+    if (!nomeEmpresa || !emailEmpresa || !cidade || !estado || !cnpj) {
+        alert("Preencha todos os campos");
+        return;
+    }else if (cnpj.length < 14){
+        alert("CNPJ inválido")
+        return;
+    }
+
+    fetch("/empresas/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nomeEmpresa, emailEmpresa, cidade, estado, cnpj })
+    }).then(function(resposta) {
+        if (resposta.ok) {
+            alert("Cadastro realizado! Entraremos em contato em breve.");
+            ipt_nomeEmpresa.value = '';
+            ipt_emailEmpresa.value = '';
+            slct_estado.value = '';
+            ipt_cidade.value = '';
+            ipt_cnpj.value = '';
+        } else {
+            resposta.json().then(json => alert(json.mensagem));
+        }
+    }).catch(function(erro) {
+        console.error(erro);
+    });
+}
+
 </script>
