@@ -121,6 +121,33 @@ function buscarGraficoUmidade(idSensor) {
 
 }
 
+function buscarTempoForaFaixa(idSensor) {
+
+    var instrucaoSql = `
+         SELECT
+            DATE(dtLeitura) AS dia,
+            COUNT(*) AS horasFora
+        FROM leitura l
+        JOIN sensor s
+            ON l.fkSensor = s.idSensor
+        JOIN lugar lu
+            ON s.fkLugar = lu.idLugar
+        JOIN tecido t
+            ON lu.fkTecido = t.idTecido
+        WHERE
+            s.idSensor = ${idSensor}
+            AND (
+                l.umidade < t.minUmidade
+                OR
+                l.umidade > t.maxUmidade
+            )
+        GROUP BY DATE(dtLeitura)
+        ORDER BY DATE(dtLeitura);
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimaLeitura,
     buscarUltimasMedidas,
@@ -128,5 +155,6 @@ module.exports = {
     buscarSensor,
     buscarUltimoAlerta,
     buscarTipoTecido,
-    buscarGraficoUmidade
+    buscarGraficoUmidade,
+    buscarTempoForaFaixa
 }

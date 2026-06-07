@@ -31,7 +31,7 @@ router.get("/grafico-umidade/:idSensor", function(req, res) {
     medidaController.buscarGraficoUmidade(req, res);
 });
 
-router.get("/tempo-fora-faixa", function(req, res) {
+router.get("/tempo-fora-faixa/:idSensor", function(req, res) {
     medidaController.buscarTempoForaFaixa(req, res);
 });
 

@@ -46,7 +46,7 @@
             </div>
             <div class="metrica">
                 <p class="kpi_titulo">Umidade ideal:</p>
-                <p>Seda:  45–55%</p>
+                <p>Seda: 45–55%</p>
                 <p>Algodão:40–50%</p>
                 <p>Linho:50–60%</p>
                 <p>Lã: 55–65%</p>
@@ -275,13 +275,13 @@
         var sensorDigital3 = new Chart(document.getElementById('sensorDigital3').getContext('2d'), {
             type: 'bar',
             data: {
-                labels: ['01/04/2026', '02/04/2026', '03/04/2026', '04/04/2026'],
+                labels: [],
                 datasets: [{
                     label: 'Horas fora da faixa ideal de umidade',
                     borderColor: '#648A55',
                     backgroundColor: '#648A55',
                     borderRadius: 20,
-                    data: [2, 1, 4, 5, 2]
+                    data: []
                 }]
             },
             options: {
@@ -307,11 +307,53 @@
             }
         });
 
+        function carregarTempoForaFaixa() {
+
+            fetch("/medidas/tempo-fora-faixa/1")
+                .then(function (resposta) {
+
+                    return resposta.json();
+
+                })
+                .then(function (dados) {
+
+                    console.log("Tempo fora da faixa:", dados);
+
+                    var labels = [];
+                    var valores = [];
+
+                    for (var i = 0; i < dados.length; i++) {
+
+                        const data = new Date(dados[i].dia);
+
+                        labels.push(
+                            data.toLocaleDateString('pt-BR')
+                        ); valores.push(dados[i].horasFora);
+
+                    }
+
+                    sensorDigital3.data.labels = labels;
+
+                    sensorDigital3.data.datasets[0].data = valores;
+
+                    sensorDigital3.update();
+
+                    fetch("/medidas/tempo-fora-faixa/1")
+                        .then(resposta => resposta.json())
+                        .then(dados => {
+                            console.log("TEMPO FORA:", dados);
+                        });
+
+                });
+
+        }
+
         carregarUltimaLeitura();
         carregarSensor();
         carregarUltimoAlerta();
         carregarTipoTecido();
         carregarGraficoUmidade();
+        carregarTempoForaFaixa();
 
         setInterval(carregarGraficoUmidade, 5000);
 
