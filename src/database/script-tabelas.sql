@@ -51,7 +51,7 @@ maxUmidade float not null,
 minUmidade float not null
 );
 
-insert into tecido(nome, maxUmidade, minUmidade) values
+insert into tecido(nome, minUmidade, maxUmidade) values
 ('Seda', 40, 50),
 ('Lã', 55, 65),
 ('Algodão', 45, 55),
