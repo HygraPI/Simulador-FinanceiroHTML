@@ -127,11 +127,11 @@
                     var data = new Date(dados[0].dtLeitura);
 
                     var dataFormatada =
-                    data.toLocaleDateString("pt-BR") + " " +
-                         data.toLocaleTimeString("pt-BR", {
-                             hour: '2-digit',
-                             minute: '2-digit'
-                    });
+                        data.toLocaleDateString("pt-BR") + " " +
+                        data.toLocaleTimeString("pt-BR", {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
 
                     document.getElementById("ultimoAlerta").innerHTML = dataFormatada;
 
@@ -155,7 +155,7 @@
 
                 });
 
-                fetch(`/medidas/umidade-ideal/${idSensor}`)
+            fetch(`/medidas/umidade-ideal/${idSensor}`)
                 .then(function (resposta) {
 
                     return resposta.json();
@@ -340,6 +340,7 @@
                     var labels = [];
                     var valores = [];
 
+
                     for (var i = 0; i < dados.length; i++) {
 
                         const data = new Date(dados[i].dia);
@@ -352,21 +353,16 @@
                             cores.push('#648A55');
                         }
 
-                        if (sensorDigital3.data.labels.length == 10) {
-                            sensorDigital3.data.labels.shift()
-                            sensorDigital3.data.datasets[0].data.shift()
-                        }
-
-                        labels.push(
-                            data.toLocaleDateString('pt-BR')
-                        ); valores.push(dados[i].horasFora);
-
+                        labels.push(data.toLocaleDateString('pt-BR'));
+                        valores.push(dados[i].horasFora);
                     }
 
+                    labels.reverse();
+                    valores.reverse();
+                    cores.reverse();
+
                     sensorDigital3.data.labels = labels;
-
                     sensorDigital3.data.datasets[0].data = valores;
-
                     sensorDigital3.data.datasets[0].backgroundColor = cores;
 
                     sensorDigital3.update();

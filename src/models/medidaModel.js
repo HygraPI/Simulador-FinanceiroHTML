@@ -115,7 +115,7 @@ function buscarGraficoUmidade(idSensor) {
 
 function buscarTempoForaFaixa(idSensor) {
 
-    var instrucaoSql = `
+    var instrucaoSql = `    
          SELECT
             DATE(dtLeitura) AS dia,
             COUNT(distinct hour(dtLeitura)) AS horasFora
@@ -134,7 +134,8 @@ function buscarTempoForaFaixa(idSensor) {
                 l.umidade > t.maxUmidade
             )
         GROUP BY DATE(dtLeitura)
-        ORDER BY DATE(dtLeitura);
+        ORDER BY DATE(dtLeitura) desc
+        limit 7;
     `;
 
     return database.executar(instrucaoSql);
