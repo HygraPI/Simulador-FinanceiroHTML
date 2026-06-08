@@ -325,6 +325,11 @@
 
                         const data = new Date(dados[i].dia);
 
+                        if (sensorDigital3.data.labels.length == 10) {
+                            sensorDigital3.data.labels.shift()
+                            sensorDigital3.data.datasets[0].data.shift()
+                        }
+
                         labels.push(
                             data.toLocaleDateString('pt-BR')
                         ); valores.push(dados[i].horasFora);
@@ -344,7 +349,7 @@
                     //     });
 
                 })
-                .catch((resposta) =>{
+                .catch((resposta) => {
                     console.log(resposta)
                 });
 
