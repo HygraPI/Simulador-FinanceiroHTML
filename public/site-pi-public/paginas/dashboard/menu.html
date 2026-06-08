@@ -112,10 +112,10 @@
                 if (resposta.ok) {
                     console.log("Ta dentro do then!")
                     resposta.json().then((sensores) => {
-                        sensores.forEach((sensor) => {
-                            listaSensores.push(sensor)
+                        listaSensores = sensores;
+                        exibirSensores()
                         });
-                    });
+                    ;
                 }
             })
             .catch(function (resposta) {
@@ -125,7 +125,6 @@
 
     function exibirSensores() {
         let qtdSensoresEmAlerta = 0;
-        setTimeout(() => {
             conteudo_tabela.innerHTML = ''
             console.log(listaSensores)
             for (let i = 0; i <= listaSensores.length - 1; i++) {
@@ -147,13 +146,9 @@
                 }
             }
             qtd_sensores_em_alerta.innerHTML = qtdSensoresEmAlerta;
-        }, 100)
     }
 
-    setInterval(() => {
-        listarSensores()
-        exibirSensores()
-    }, 1000)
+    setInterval(listarSensores, 1000);
 
 
 </script>
