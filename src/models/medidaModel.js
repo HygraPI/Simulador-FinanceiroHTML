@@ -140,6 +140,17 @@ function buscarTempoForaFaixa(idSensor) {
     return database.executar(instrucaoSql);
 }
 
+function umidadeDoLugar(idSensor) {
+    var instrucaoSql = `select t.nome as Tecido, t.maxUmidade, t.minUmidade 
+    from tecido as t 
+    join lugar on idTecido = fkTecido 
+    join sensor on fkLugar = idLugar 
+    where idSensor = ${idSensor};
+`
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimaLeitura,
     buscarUltimasMedidas,
@@ -148,5 +159,6 @@ module.exports = {
     buscarUltimoAlerta,
     buscarTipoTecido,
     buscarGraficoUmidade,
-    buscarTempoForaFaixa
+    buscarTempoForaFaixa,
+    umidadeDoLugar
 }

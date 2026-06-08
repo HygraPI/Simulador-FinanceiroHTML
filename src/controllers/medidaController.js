@@ -164,6 +164,24 @@ function buscarTempoForaFaixa(req, res) {
 
 }
 
+function umidadeDoLugar(req, res) {
+
+    var idSensor = req.params.idSensor;
+
+    medidaModel.umidadeDoLugar(idSensor)
+        .then(function(resultado) {
+
+            res.status(200).json(resultado);
+
+        }).catch(function(erro) {
+
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+
+        });
+
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -172,5 +190,6 @@ module.exports = {
     buscarUltimoAlerta,
     buscarGraficoUmidade,
     buscarTempoForaFaixa,
-    buscarTipoTecido
+    buscarTipoTecido,
+    umidadeDoLugar
 }

@@ -27,6 +27,10 @@ router.get("/tipo-tecido/:idSensor", function(req, res) {
     medidaController.buscarTipoTecido(req, res);
 });
 
+router.get("/umidade-ideal/:idSensor", function(req, res) {
+    medidaController.umidadeDoLugar(req, res);
+});
+
 router.get("/grafico-umidade/:idSensor", function(req, res) {
     medidaController.buscarGraficoUmidade(req, res);
 });
