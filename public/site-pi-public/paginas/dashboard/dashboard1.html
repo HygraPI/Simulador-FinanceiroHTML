@@ -326,7 +326,7 @@
         });
 
         function carregarTempoForaFaixa() {
-
+            let cores = []
             fetch(`/medidas/tempo-fora-faixa/${idSensor}`)
                 .then(function (resposta) {
 
@@ -344,6 +344,14 @@
 
                         const data = new Date(dados[i].dia);
 
+                        if (dados[i].horasFora > 5) {
+                            cores.push('#B83A3A')
+                        } else if (dados[i].horasFora >= 3) {
+                            cores.push('#D99B26');
+                        } else {
+                            cores.push('#648A55');
+                        }
+
                         if (sensorDigital3.data.labels.length == 10) {
                             sensorDigital3.data.labels.shift()
                             sensorDigital3.data.datasets[0].data.shift()
@@ -358,6 +366,8 @@
                     sensorDigital3.data.labels = labels;
 
                     sensorDigital3.data.datasets[0].data = valores;
+
+                    sensorDigital3.data.datasets[0].backgroundColor = cores;
 
                     sensorDigital3.update();
 
