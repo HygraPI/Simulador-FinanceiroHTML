@@ -8,7 +8,8 @@ nomeEmpresa VARCHAR (45) NOT NULL,
 cnpj VARCHAR (20) NOT NULL,
 cidade VARCHAR (45) NOT NULL,
 estado VARCHAR (45) NOT NULL,
-codigo_ativacao CHAR(5) NOT NULL
+codigo_ativacao CHAR(5) NOT NULL,
+emailEmpresa VARCHAR(150)
 );
 
 INSERT INTO empresa values
