@@ -36,7 +36,8 @@ function buscarUltimaLeitura(idSensor) {
             umidade,
             dtLeitura
         FROM leitura
-        WHERE fkSensor = ${idSensor}
+        WHERE fkSensor = ${idSensor} AND
+        fkAlerta IS NOT NULL
         ORDER BY dtLeitura DESC
         LIMIT 1;
     `;
@@ -60,16 +61,7 @@ function buscarSensor(idSensor){
 
 function buscarUltimoAlerta(idSensor) {
 
-    var instrucaoSql = `
-        SELECT 
-            a.dataAlerta
-        FROM leitura l
-        JOIN alerta a
-            ON l.fkAlerta = a.idAlerta
-        WHERE l.fkSensor = ${idSensor}
-        ORDER BY a.dataAlerta DESC
-        LIMIT 1;
-    `;
+    var instrucaoSql = `SELECT dtLeitura FROM leitura WHERE fkSensor = 8 AND fkAlerta IS NOT NULL ORDER BY dtLeitura DESC LIMIT 1;`;
 
     console.log("Executando SQL:\n" + instrucaoSql);
 

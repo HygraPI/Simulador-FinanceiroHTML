@@ -119,17 +119,16 @@
 
                 }).then(function (dados) {
 
-                    var data = new Date(dados[0].dataAlerta);
+                    var data = new Date(dados[0].dtLeitura);
 
                     var dataFormatada =
-                        data.toLocaleDateString("pt-BR") + " " +
-                        data.toLocaleTimeString("pt-BR", {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
+                    data.toLocaleDateString("pt-BR") + " " +
+                         data.toLocaleTimeString("pt-BR", {
+                             hour: '2-digit',
+                             minute: '2-digit'
+                    });
 
-                    document.getElementById("ultimoAlerta").innerHTML =
-                        dataFormatada;
+                    document.getElementById("ultimoAlerta").innerHTML = dataFormatada;
 
                     console.log(dados);
 
@@ -355,14 +354,15 @@
 
         }
 
-        carregarUltimaLeitura();
-        carregarSensor();
-        carregarUltimoAlerta();
-        carregarTipoTecido();
-        carregarGraficoUmidade();
-        carregarTempoForaFaixa();
 
-        setInterval(carregarGraficoUmidade, 1000);
+        setInterval(() => {
+            carregarUltimaLeitura();
+            carregarSensor();
+            carregarUltimoAlerta();
+            carregarTipoTecido();
+            carregarGraficoUmidade();
+            carregarTempoForaFaixa();
+        }, 1000);
 
 
 
