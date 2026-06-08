@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./dashboard.js"></script>
     <title>Dashboard</title>
 </head>
 
@@ -309,10 +308,10 @@
 
         function carregarTempoForaFaixa() {
 
-            fetch("/medidas/tempo-fora-faixa/1")
+            fetch(`/medidas/tempo-fora-faixa/${idSensor}`)
                 .then(function (resposta) {
 
-                    return resposta.json();
+                    return resposta.json()
 
                 })
                 .then(function (dados) {
@@ -338,12 +337,15 @@
 
                     sensorDigital3.update();
 
-                    fetch("/medidas/tempo-fora-faixa/1")
-                        .then(resposta => resposta.json())
-                        .then(dados => {
-                            console.log("TEMPO FORA:", dados);
-                        });
+                    // fetch(`/medidas/tempo-fora-faixa/1`)
+                    //     .then(resposta => resposta.json())
+                    //     .then(dados => {
+                    //         console.log("TEMPO FORA:", dados);
+                    //     });
 
+                })
+                .catch((resposta) =>{
+                    console.log(resposta)
                 });
 
         }
@@ -355,7 +357,7 @@
         carregarGraficoUmidade();
         carregarTempoForaFaixa();
 
-         setInterval(carregarGraficoUmidade, 5000);
+        setInterval(carregarGraficoUmidade, 5000);
 
 
 
