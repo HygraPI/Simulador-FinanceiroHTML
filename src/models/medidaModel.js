@@ -126,7 +126,7 @@ function buscarTempoForaFaixa(idSensor) {
     var instrucaoSql = `
          SELECT
             DATE(dtLeitura) AS dia,
-            COUNT(*) AS horasFora
+            COUNT(distinct hour(dtLeitura)) AS horasFora
         FROM leitura l
         JOIN sensor s
             ON l.fkSensor = s.idSensor
