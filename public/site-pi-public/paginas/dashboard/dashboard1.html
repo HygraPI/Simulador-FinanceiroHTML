@@ -43,13 +43,6 @@
                 <p class="kpi_titulo"> Último alerta:</p>
                 <h2 class="kpi_valor" id="ultimoAlerta" style="font-size: 25px;">-</h2>
             </div>
-            <!-- <div class="metrica">
-                <p class="kpi_titulo">Umidade ideal:</p>
-                <p>Seda: 45–55%</p>
-                <p>Algodão:40–50%</p>
-                <p>Linho:50–60%</p>
-                <p>Lã: 55–65%</p>
-            </div> -->
             <div class="metrica">
                 <p class="kpi_titulo">Umidade ideal:</p>
                 <p id="umidade-ideal-max">-- / --</p>
@@ -68,7 +61,8 @@
 
         <div class="grafico">
             <div class="grafico_titulo">Tempo fora da faixa ideal</div>
-            <canvas id="sensorDigital3"></canvas>
+            <canvas id="sensorDigital3"></canvas><br>
+            <p>* <span style="color: #B83A3A;">Vermelho: Gravíssimo;</span> <span style="color: #D99B26;">Amarelo: Grave;</span> <span style="color: #648A55;">Verde: Médio</span></p>
         </div>
 
     </div>
