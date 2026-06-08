@@ -57,6 +57,8 @@
 
 </html>
 <script>
+    let tipoUser = sessionStorage.TIPO_USUARIO;
+
     console.log(sessionStorage.ID_USUARIO)
     let tentativas = 0;
 
@@ -100,7 +102,7 @@
 
 
 
-                    if (sessionStorage.TIPO_USUARIO == 'suporte') {
+                    if (sessionStorage.TIPO_USUARIO == 'suporte' || sessionStorage.TIPO_USUARIO == 'Suporte') {
                        setTimeout(function () {
                         window.location = "./bobia";
                     }, 1000); // apenas para exibir o loading 
