@@ -369,19 +369,23 @@ body {
 
 .grafico {
     background-color: white;
-    border-radius: 32px;
+    border-radius: 17px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     height: 300px;
     margin-top: 10px;
     margin-left: 30px;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 5px;
+    padding-top: 20px;
     min-height: 350px;
     width: 750px; 
     flex: none;
     align-items: center;
+}
+
+.grafico_titulo {
+   padding-bottom: 10px;
 }
 
 .graficos {
