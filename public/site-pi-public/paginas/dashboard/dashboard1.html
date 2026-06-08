@@ -43,12 +43,17 @@
                 <p class="kpi_titulo"> Último alerta:</p>
                 <h2 class="kpi_valor" id="ultimoAlerta" style="font-size: 25px;">-</h2>
             </div>
-            <div class="metrica">
+            <!-- <div class="metrica">
                 <p class="kpi_titulo">Umidade ideal:</p>
                 <p>Seda: 45–55%</p>
                 <p>Algodão:40–50%</p>
                 <p>Linho:50–60%</p>
                 <p>Lã: 55–65%</p>
+            </div> -->
+            <div class="metrica">
+                <p class="kpi_titulo">Umidade ideal:</p>
+                <p id="umidade-ideal-max">-- / --</p>
+                <p id="umidade-ideal-min">-- / --</p>
             </div>
         </div>
     </div>
@@ -148,6 +153,21 @@
 
                     document.getElementById("tipoTecido").innerHTML =
                         dados[0].nome;
+
+                });
+
+                fetch(`/medidas/umidade-ideal/${idSensor}`)
+                .then(function (resposta) {
+
+                    return resposta.json();
+
+                }).then(function (dados) {
+
+                    document.getElementById("umidade-ideal-max").innerHTML = `
+                        Umidade Ideal Máxima: ${dados[0].maxUmidade}
+                    `;
+
+                    document.getElementById("umidade-ideal-min").innerHTML = `Umidade Ideal Mínima: ${dados[0].minUmidade}`;
 
                 });
 
