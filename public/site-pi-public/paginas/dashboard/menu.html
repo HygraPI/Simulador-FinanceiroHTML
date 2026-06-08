@@ -62,47 +62,6 @@
                         </tr>
                     </thead>
                     <tbody id="conteudo_tabela">
-                        <tr>
-                            <td class="sensor">1-A</td>
-                            <td class="localizacao">Setor 1C</td>
-                            <td class="tecido">algodao</td>
-                            <td class="porcentagem">80%</td>
-                            <td class="status">Crítico</td>
-                            <td><a href="./dashboard1.html">
-                                    <button id="Dashboard">Ver Dashboard</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sensor">1-b</td>
-                            <td class="localizacao">Setor 1B</td>
-                            <td class="porcentagem">57%</td>
-                            <td class="status">Ideal</td>
-                            <td><a href="./dashboard1.html">
-                                    <button id="Dashboard">Ver Dashboard</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sensor">2-A</td>
-                            <td class="localizacao">Setor 1A</td>
-                            <td class="porcentagem">90%</td>
-                            <td class="status">Crítico</td>
-                            <td><a href="./dashboard1.html">
-                                    <button id="Dashboard">Ver Dashboard</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="sensor">2-A</td>
-                            <td class="localizacao">Setor 1A</td>
-                            <td class="porcentagem">55%</td>
-                            <td class="status">Ideal</td>
-                            <td><a href="dashboard1.html">
-                                    <button id="Dashboard">Ver Dashboard</button>
-                                </a>
-                            </td>
-                        </tr>
 
                     </tbody>
                 </table>
@@ -147,7 +106,7 @@
             },
             body: JSON.stringify({
                 idEmpresaServer: sessionStorage.ID_EMPRESA
-            })  
+            })
         })
             .then(function (resposta) {
                 if (resposta.ok) {
@@ -167,8 +126,8 @@
     function exibirSensores() {
         let qtdSensoresEmAlerta = 0;
         setTimeout(() => {
-            console.log(listaSensores)
             conteudo_tabela.innerHTML = ''
+            console.log(listaSensores)
             for (let i = 0; i <= listaSensores.length - 1; i++) {
                 conteudo_tabela.innerHTML += `
                 <tr>
@@ -183,18 +142,18 @@
                     </td>
                 </tr>
             `
-            if(listaSensores[i].StatusDeAlerta != 'umidade ideal'){
-                qtdSensoresEmAlerta++
-            }
+                if (listaSensores[i].StatusDeAlerta != 'umidade ideal') {
+                    qtdSensoresEmAlerta++
+                }
             }
             qtd_sensores_em_alerta.innerHTML = qtdSensoresEmAlerta;
         }, 100)
     }
 
     setInterval(() => {
-        exibirSensores()
         listarSensores()
-    }, 3000)
+        exibirSensores()
+    }, 1000)
 
 
 </script>
