@@ -139,6 +139,7 @@
     mensagemBoasVindas.innerHTML = `Seja bem vindo, ${nome}!`
 
     function listarSensores() {
+        listaSensores = []
         fetch("/sensores/listarSensores", {
             method: "POST",
             headers: {
@@ -189,6 +190,11 @@
             qtd_sensores_em_alerta.innerHTML = qtdSensoresEmAlerta;
         }, 100)
     }
+
+    setInterval(() => {
+        exibirSensores()
+        listarSensores()
+    }, 3000)
 
 
 </script>
